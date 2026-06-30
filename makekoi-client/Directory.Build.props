@@ -1,0 +1,7 @@
+<Project>
+  <PropertyGroup>
+    <!-- ソースジェネレーターの出力を obj/ に書き出す → C# Dev Kit が認識できるようになる -->
+    <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+    <CompilerGeneratedFilesOutputPath>$(BaseIntermediateOutputPath)Generated</CompilerGeneratedFilesOutputPath>
+  </PropertyGroup>
+</Project>
