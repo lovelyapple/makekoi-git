@@ -145,6 +145,7 @@ public class GameLifetimeScope : LifetimeScope
 - 📝 コミットメッセージは日本語OK、内容を明確に
 - 🏷️ ブランチ名の区切りは `_`（`/` ではなく）。例: `feature_koi_feeding`
 - ⚠️ `.meta` ファイルは必ずコミットに含める
+- ⚠️ `makekoi-client/` 配下に入れ子の Git リポジトリ（`.git`）を作成しない
 
 ## セットアップ
 
