@@ -8,7 +8,14 @@ public class UIFooterController : MonoBehaviour
     {
         foreach (var button in _footerButtons)
         {
-            button.OnTypeSelected(FooterButtonType.Title);
+            button.OnTypeSelected(GamePhaseContentType.Title);
+        }
+    }
+    public void OnTypeSelected(GamePhaseContentType contentType)
+    {
+        foreach (var button in _footerButtons)
+        {
+            button.OnTypeSelected(contentType);
         }
     }
 }

@@ -1,10 +1,16 @@
 using System.Collections.Generic;
 using UnityEngine;
-
+using System;
+[Serializable]
+public class GamePhaseContentResource
+{
+    public GamePhaseContentType ContentType;
+    public GameObject ContentPrefab;
+}
 public class ResourceContainer : MonoSingletoneBase<ResourceContainer>
 {
     private const string ItemIconResourceDirectory = "2D/UI/item";
-
+    [SerializeField] private List<GamePhaseContentResource> _gamePhaseContentResources;
     private class ItemImageCache
     {
         public string Key;
@@ -76,5 +82,16 @@ public class ResourceContainer : MonoSingletoneBase<ResourceContainer>
         var normalizedPath = resourcePath.Replace('\\', '/');
         var slashIndex = normalizedPath.LastIndexOf('/');
         return slashIndex >= 0 ? normalizedPath.Substring(slashIndex + 1) : normalizedPath;
+    }
+    public GameObject GetGamePhaseContentPrefab(GamePhaseContentType contentType)
+    {
+        var resource = _gamePhaseContentResources.Find(x => x.ContentType == contentType);
+        if (resource != null)
+        {
+            return resource.ContentPrefab;
+        }
+
+        Debug.LogError($"ResourceContainer: GamePhaseContentPrefab for {contentType} not found");
+        return null;
     }
 }

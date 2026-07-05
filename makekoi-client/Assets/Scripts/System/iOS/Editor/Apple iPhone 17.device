@@ -1,0 +1,69 @@
+{
+    "friendlyName": "Apple iPhone 17",
+    "version": 1,
+    "screens": [
+        {
+            "width": 1206,
+            "height": 2622,
+            "navigationBarHeight": 0,
+            "dpi": 460.0,
+            "orientations": [
+                {
+                    "orientation": 1,
+                    "safeArea": {
+                        "serializedVersion": "2",
+                        "x": 0.0,
+                        "y": 106.0,
+                        "width": 1206.0,
+                        "height": 2370.0
+                    },
+                    "cutouts": []
+                },
+                {
+                    "orientation": 2,
+                    "safeArea": {
+                        "serializedVersion": "2",
+                        "x": 0.0,
+                        "y": 146.0,
+                        "width": 1206.0,
+                        "height": 2370.0
+                    },
+                    "cutouts": []
+                },
+                {
+                    "orientation": 3,
+                    "safeArea": {
+                        "serializedVersion": "2",
+                        "x": 146.0,
+                        "y": 65.0,
+                        "width": 2330.0,
+                        "height": 1141.0
+                    },
+                    "cutouts": []
+                },
+                {
+                    "orientation": 4,
+                    "safeArea": {
+                        "serializedVersion": "2",
+                        "x": 146.0,
+                        "y": 65.0,
+                        "width": 2330.0,
+                        "height": 1141.0
+                    },
+                    "cutouts": []
+                }
+            ]
+        }
+    ],
+    "systemInfo": {
+        "deviceModel": "iPhone17",
+        "deviceType": 1,
+        "operatingSystem": "iOS 26",
+        "operatingSystemFamily": 0,
+        "supportsAccelerometer": true,
+        "supportsAudio": true,
+        "supportsGyroscope": true,
+        "supportsLocationService": true,
+        "supportsVibration": true
+    }
+}

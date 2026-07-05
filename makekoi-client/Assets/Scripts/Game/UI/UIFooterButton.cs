@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
-public enum FooterButtonType
+public enum GamePhaseContentType
 {
     Title,
     CharaSelect,
@@ -9,11 +9,11 @@ public enum FooterButtonType
 }
 public class UIFooterButton : MonoBehaviour
 {
-    [SerializeField] private FooterButtonType _buttonType;
+    [SerializeField] private GamePhaseContentType _buttonType;
     [SerializeField] private Image _selectedBgObject;
     [SerializeField] private GameObject _selectedTextObject;
     [SerializeField] private GameObject _unselectedTextObject;
-    public void OnTypeSelected(FooterButtonType buttonType)
+    public void OnTypeSelected(GamePhaseContentType buttonType)
     {
         _selectedBgObject.enabled = _buttonType == buttonType;
         _selectedTextObject.SetActive(_buttonType == buttonType);
