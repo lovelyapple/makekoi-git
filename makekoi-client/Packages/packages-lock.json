@@ -1,15 +1,14 @@
 {
   "dependencies": {
     "com.astrayde.framework": {
-      "version": "git@github.com:lovelyapple/AstraydeFrameworkUPM.git#v0.1.7",
+      "version": "file:/Users/lilin/projects/AstraydeFramework/AstraydeFramework_Develop/Packages/com.astrayde.framework",
       "depth": 0,
-      "source": "git",
+      "source": "local",
       "dependencies": {
         "com.cysharp.unitask": "2.5.10",
         "com.cysharp.r3": "1.1.0",
         "org.nuget.observablecollections.r3": "3.3.4"
-      },
-      "hash": "2b2fa8529c6f6cdc2b46fe4f3fda8a7253aa1bca"
+      }
     },
     "com.cysharp.r3": {
       "version": "https://github.com/Cysharp/R3.git?path=src/R3.Unity/Assets/R3.Unity",

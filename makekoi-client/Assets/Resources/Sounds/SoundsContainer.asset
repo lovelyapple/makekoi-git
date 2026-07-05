@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 523c9f65172544097b7545b758879125, type: 3}
+  m_Name: SoundsContainer
+  m_EditorClassIdentifier: Assembly-CSharp::SoundsContainer
+  SeResources:
+  - SoundType: common_btn_negative
+    Clip: {fileID: 8300000, guid: 737393654d22d4f5ab0d1c3393604da8, type: 3}
+  - SoundType: common_btn_confirm
+    Clip: {fileID: 8300000, guid: 2e974960e5c3944a381d7f7b5e5cae20, type: 3}
+  - SoundType: common_btn_cancel
+    Clip: {fileID: 8300000, guid: 3d13807ee03c847b2a8a2783eb232a7e, type: 3}
+  BgmResources: []
