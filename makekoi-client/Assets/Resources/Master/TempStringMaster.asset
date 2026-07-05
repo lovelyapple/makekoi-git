@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ac2f3cde2f19482b9e4958db199d229, type: 3}
+  m_Name: TempStringMaster
+  m_EditorClassIdentifier: Assembly-CSharp::TempTextTable
+  Data:
+  - Title: title
+    Txt: txt
+  - Title: COMMON_BUTTON_OK
+    Txt: OK
+  - Title: COMMON_BUTTON_CANCEL
+    Txt: "\u30AD\u30E3\u30F3\u30BB\u30EB"
+  - Title: COMMON_BUTTON_CLOSE
+    Txt: "\u9589\u3058\u308B"
+  - Title: GAME_TITLE
+    Txt: "\u307F\u3064\u8D8A\u3057\u5546\u5E97\u306E\u5947\u8DE1 \n \u301C\u8CA0\u3051\u3066\u3088\u30AC\u30F3\u30DE\u3001\u604B\u306E\u305F\u3081\u306B\u301C"
