@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "com.astrayde.framework": "file:/Users/lilin/projects/AstraydeFramework/AstraydeFramework_Develop/Packages/com.astrayde.framework",
+    "com.astrayde.framework": "git@github.com:lovelyapple/AstraydeFrameworkUPM.git#v0.1.91",
     "com.cysharp.r3": "https://github.com/Cysharp/R3.git?path=src/R3.Unity/Assets/R3.Unity",
     "com.cysharp.unitask": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask",
     "com.unity.2d.sprite": "1.0.0",
