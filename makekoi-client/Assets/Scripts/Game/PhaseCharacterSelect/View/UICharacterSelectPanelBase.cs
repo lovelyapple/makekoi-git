@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class UICharacterSelectPanelBase : MonoBehaviour
 {
-    public virtual void OnReset()
+    public virtual void OnEnter()
     {
     }
 }

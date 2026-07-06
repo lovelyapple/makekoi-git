@@ -1,7 +1,12 @@
 using UnityEngine;
 using UnityEngine.UI;
+using Makekoi.PartnerCreate;
 public class UIPartnerClothListCell : MonoBehaviour
 {
-    [SerializeField] private Image _partImage;
+    [SerializeField] private GenderType _genderType;
     [SerializeField] private GameObject _importantMarkObj;
+    public void OnReset()
+    {
+        _importantMarkObj.SetActive(false);
+    }
 }

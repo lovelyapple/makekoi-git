@@ -1,0 +1,7 @@
+[
+  {
+    "id": "1783350262452",
+    "title": "Phase-CharaSelectのMVPクラス設定",
+    "content": "Assets/Scripts/Game/PhaseCharacterSelect/\n├── CharacterSelectResult.cs\n├── CharacterSelectModel.cs\n├── CharacterSelectPresenter.cs\n└── View/\n    ├── CharacterSelectView.cs\n    ├── UIGenderSelectPanel.cs\n    ├── UIPartnerWishPanel.cs\n    ├── UIPartnerWishItem.cs\n    └── UIMoneyLotteryPanel.cs"
+  }
+]
