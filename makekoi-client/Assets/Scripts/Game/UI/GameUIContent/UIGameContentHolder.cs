@@ -10,8 +10,10 @@ public class UIGameContentHolder : MonoBehaviour
         if (contentPrefab != null)
         {
             var content = Instantiate(contentPrefab, this.transform);
-            content.transform.localPosition = Vector3.zero;
-            content.transform.localScale = Vector3.one;
+            var rt = content.GetComponent<RectTransform>();
+            rt.SetParent(transform, false);     // UIではこれが重要（worldPositionStays=false）
+            rt.anchoredPosition = Vector2.zero; // localPositionではなくanchoredPosition
+            rt.localScale = Vector3.one;
         }
         else
         {
