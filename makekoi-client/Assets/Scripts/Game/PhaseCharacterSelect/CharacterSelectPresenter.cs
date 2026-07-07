@@ -29,7 +29,16 @@ public class CharacterSelectPresenter : GamePhaseWindowBase
             .Subscribe(genderType =>
             {
                 GameModel.Instance.UpdateGenderType(genderType);
+                _characterSelectView.GoToIndex((int)CharacterSelectPhase.PartnerWish);
             }).AddTo(this);
+
+        _partnerWishPanel.OnConfirmObservable()
+            .Subscribe(_ =>
+            {
+                _characterSelectView.GoToIndex((int)CharacterSelectPhase.MoneyLottery);
+            }).AddTo(this);
+
+        _genderSelectPanel.OnEnter();
     }
     public override void OnEnter()
     {
