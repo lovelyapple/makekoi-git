@@ -6,10 +6,9 @@
 # This template is maintained from the gitattributes/gitattributes repository
 # and distributed under MIT License.
 
-# Define macros (only works in top-level gitattributes files)
-[attr]lfs               filter=lfs diff=lfs merge=lfs -text
-[attr]unity-json        eol=lf linguist-language=json
-[attr]unity-yaml        merge=unityyamlmerge eol=lf linguist-language=yaml
+# Macro definitions (lfs, unity-json, unity-yaml) live in the repository's
+# top-level .gitattributes, since Git only allows macro attributes to be
+# defined there.
 
 # Optionally collapse Unity YAML files on GitHub diffs
 # [attr]unity-yaml        merge=unityyamlmerge text linguist-language=yaml linguist-generated
