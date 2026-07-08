@@ -4103,7 +4103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Astrayde.Framework.Runtime::UISnapPageScrollView
   _scrollRect: {fileID: 1870436228}
   _content: {fileID: 854483876}
-  _bufferCount: 2
+  _bufferCount: 3
   _snapDuration: 0.25
   _spacing: 0
   _isVertical: 1
@@ -4130,6 +4130,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UIRootController
   _contentScrollView: {fileID: 1845848785}
   _footerController: {fileID: 338548330}
+  _contentHolders:
+  - {fileID: 1077948819}
+  - {fileID: 866876518}
+  - {fileID: 1667460197}
+  - {fileID: 2084318437}
 --- !u!1 &1870436226
 GameObject:
   m_ObjectHideFlags: 0

@@ -224,6 +224,7 @@ GameObject:
   - component: {fileID: 3245463174601331078}
   - component: {fileID: 3731900810782684845}
   - component: {fileID: 3448474317652828163}
+  - component: {fileID: 1934685546418112128}
   m_Layer: 5
   m_Name: Image_content_result
   m_TagString: Untagged
@@ -289,3 +290,15 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1934685546418112128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8134864572667640588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38f5d7bb0f7fd4815b947a5c8fca760e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShopResultPresenter

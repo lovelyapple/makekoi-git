@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 public enum GamePhaseContentType
 {
-    Title,
+    Title = 0,
     CharaSelect,
     Shopping,
     Result

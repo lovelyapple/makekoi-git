@@ -46,6 +46,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4777763719161375865}
+  - component: {fileID: 4873007663899426619}
+  - component: {fileID: 4887524657997717538}
   - component: {fileID: 3957169396919554580}
   - component: {fileID: 695229990207809943}
   - component: {fileID: 7959406787345621781}
@@ -78,6 +80,33 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 988, y: 1828.3}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &4873007663899426619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1245904988399312044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1ffbda221242404ea9fba38a991c7de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TitlePresenter
+  _view: {fileID: 4887524657997717538}
+--- !u!114 &4887524657997717538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1245904988399312044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d3d555d322a0438ebb7760fe4db82f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TitleView
+  _startButton: {fileID: 8897587346636952739}
+  _buttonImage: {fileID: 1506460495260799451}
 --- !u!222 &3957169396919554580
 CanvasRenderer:
   m_ObjectHideFlags: 0
