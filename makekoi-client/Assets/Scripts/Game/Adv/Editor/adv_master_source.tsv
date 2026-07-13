@@ -1,0 +1,5 @@
+#code	gender	script_index	chara_emotion_type	message
+GENDER_SELECT_CONFIRM	1	1	1	どんな服を買ってくれるか楽しみだな！¥nよろしくね！
+GENDER_SELECT_CONFIRM	0	1	1	珍しい！¥nどんな服を買ってくれるか楽しみですね！
+GENDER_SELECT_CONFIRM	1	2	1	今回僕がここを大事にしているのでちゃんと選んでね
+GENDER_SELECT_CONFIRM	0	2	1	今回私がここを大事にしているのでちゃんと選んでね

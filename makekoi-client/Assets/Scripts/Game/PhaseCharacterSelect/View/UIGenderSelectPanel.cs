@@ -8,7 +8,6 @@ public class UIGenderSelectPanel : UICharacterSelectPanelBase
     [SerializeField] private UIGenderSelectButton _maleButton;
     [SerializeField] private UIGenderSelectButton _femaleButton;
     [SerializeField] private Button _confirmButton;
-    [SerializeField] private UIGenderSelectConfirmPerformanceView _confirmPerformanceView;
     private bool _isConfirmButtonClicked = false;
     public Observable<GenderType> OnConfirmObserable() =>
         _confirmButton.OnClickAsObservable()
@@ -16,14 +15,7 @@ public class UIGenderSelectPanel : UICharacterSelectPanelBase
             .SelectAwait(async (_, ct) =>
             {
                 _isConfirmButtonClicked = true;
-                var sprite = _selectedGenderType.Value == GenderType.Male ?
-                _maleButton.CharacterSprite : _femaleButton.CharacterSprite;
-
-                var messageSuffix = _selectedGenderType.Value == GenderType.Male ? "MALE" : "FEMALE";
-                var message = TempTextTableContainer.GetText($"CHARA_CHAT_MESSAGE_GENDER_SELECT_CONFIRM_{messageSuffix}");
-
-                _confirmPerformanceView.Setup(sprite, message);
-                await _confirmPerformanceView.ShowAsync();
+                await UICommonCharacterMessageWindow.PlayAdvAsync("GENDER_SELECT_CONFIRM", _selectedGenderType.Value);
                 return _selectedGenderType.Value;
             });
     private GenderType? _selectedGenderType = null;
