@@ -1,17 +1,18 @@
 using System.Collections.Generic;
 using System.IO;
+using System;
 using UnityEditor;
 using UnityEngine;
 
-public class AdvMasterImporter
+public class StaffReactionMasterImporter
 {
-    private const string TsvPath = "Assets/Scripts/Game/Adv/Editor/adv_master_source.tsv";
-    private const string OutputPath = "Assets/Resources/Master/AdvMaster.asset";
+    private const string TsvPath = "Assets/Scripts/Game/StaffReaction/Editor/staff_reaction_master_source.tsv";
+    private const string OutputPath = "Assets/Resources/Master/StaffReactionMaster.asset";
 
-    [MenuItem("Makekoi/AdvMaster/Build")]
+    [MenuItem("Makekoi/StaffReactionMaster/Build")]
     public static void Build()
     {
-        var dataList = new List<AdvMaster>();
+        var dataList = new List<StaffReactionMaster>();
 
         var lines = File.ReadAllLines(TsvPath);
         foreach (var line in lines)
@@ -20,16 +21,15 @@ public class AdvMasterImporter
                 continue;
 
             var columns = line.Split('\t');
-            if (columns.Length < 5)
+            if (columns.Length < 4)
                 continue;
 
-            var record = new AdvMaster
+            var record = new StaffReactionMaster
             {
-                Code = columns[0].Trim(),
-                Gender = int.Parse(columns[1].Trim()),
-                ScriptIndex = int.Parse(columns[2].Trim()),
-                CharaEmotionType = int.Parse(columns[3].Trim()),
-                Message = columns[4].Trim()
+                Code = (StaffReactionCode)Enum.Parse(typeof(StaffReactionCode), columns[0].Trim()),
+                PatternCode = int.Parse(columns[1].Trim()),
+                TexturePath = columns[2].Trim(),
+                Message = columns[3].Trim()
                     .Replace("\\n", "\n")
                     .Replace("¥n", "\n"),
             };
@@ -39,10 +39,10 @@ public class AdvMasterImporter
         if (!AssetDatabase.IsValidFolder("Assets/Resources/Master"))
             AssetDatabase.CreateFolder("Assets/Resources", "Master");
 
-        var master = AssetDatabase.LoadAssetAtPath<AdvTable>(OutputPath);
+        var master = AssetDatabase.LoadAssetAtPath<StaffReactionTable>(OutputPath);
         if (master == null)
         {
-            master = ScriptableObject.CreateInstance<AdvTable>();
+            master = ScriptableObject.CreateInstance<StaffReactionTable>();
             master.Data = dataList.ToArray();
             AssetDatabase.CreateAsset(master, OutputPath);
         }
@@ -55,6 +55,6 @@ public class AdvMasterImporter
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
 
-        Debug.Log($"[AdvMasterImporter] {dataList.Count} entries → {OutputPath}");
+        Debug.Log($"[StaffReactionMasterImporter] {dataList.Count} entries → {OutputPath}");
     }
 }

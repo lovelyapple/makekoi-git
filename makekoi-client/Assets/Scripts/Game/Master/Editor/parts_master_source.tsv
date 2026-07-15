@@ -1,0 +1,46 @@
+#part_type	gender	grade	name	texture_path
+#PartType: Top=0,Inner=1,Bottom=2,Shoes=3,Accessory=4,Bag=5,HairAccessory=6
+#Gender: Female=0, Male=1
+#Grade: Premium=0, Mid=1, Budget=2
+Top	0	0	トップス（高級・女性）	2D/Texture/ClothParts/Top_Female_Premium
+Top	0	1	トップス（中級・女性）	2D/Texture/ClothParts/Top_Female_Mid
+Top	0	2	トップス（下級・女性）	2D/Texture/ClothParts/Top_Female_Budget
+Top	1	0	トップス（高級・男性）	2D/Texture/ClothParts/Top_Male_Premium
+Top	1	1	トップス（中級・男性）	2D/Texture/ClothParts/Top_Male_Mid
+Top	1	2	トップス（下級・男性）	2D/Texture/ClothParts/Top_Male_Budget
+Inner	0	0	インナー（高級・女性）	2D/Texture/ClothParts/Inner_Female_Premium
+Inner	0	1	インナー（中級・女性）	2D/Texture/ClothParts/Inner_Female_Mid
+Inner	0	2	インナー（下級・女性）	2D/Texture/ClothParts/Inner_Female_Budget
+Inner	1	0	インナー（高級・男性）	2D/Texture/ClothParts/Inner_Male_Premium
+Inner	1	1	インナー（中級・男性）	2D/Texture/ClothParts/Inner_Male_Mid
+Inner	1	2	インナー（下級・男性）	2D/Texture/ClothParts/Inner_Male_Budget
+Bottom	0	0	ボトムス（高級・女性）	2D/Texture/ClothParts/Bottom_Female_Premium
+Bottom	0	1	ボトムス（中級・女性）	2D/Texture/ClothParts/Bottom_Female_Mid
+Bottom	0	2	ボトムス（下級・女性）	2D/Texture/ClothParts/Bottom_Female_Budget
+Bottom	1	0	ボトムス（高級・男性）	2D/Texture/ClothParts/Bottom_Male_Premium
+Bottom	1	1	ボトムス（中級・男性）	2D/Texture/ClothParts/Bottom_Male_Mid
+Bottom	1	2	ボトムス（下級・男性）	2D/Texture/ClothParts/Bottom_Male_Budget
+Shoes	0	0	シューズ（高級・女性）	2D/Texture/ClothParts/Shoes_Female_Premium
+Shoes	0	1	シューズ（中級・女性）	2D/Texture/ClothParts/Shoes_Female_Mid
+Shoes	0	2	シューズ（下級・女性）	2D/Texture/ClothParts/Shoes_Female_Budget
+Shoes	1	0	シューズ（高級・男性）	2D/Texture/ClothParts/Shoes_Male_Premium
+Shoes	1	1	シューズ（中級・男性）	2D/Texture/ClothParts/Shoes_Male_Mid
+Shoes	1	2	シューズ（下級・男性）	2D/Texture/ClothParts/Shoes_Male_Budget
+Accessory	0	0	アクセサリー（高級・女性）	2D/Texture/ClothParts/Accessory_Female_Premium
+Accessory	0	1	アクセサリー（中級・女性）	2D/Texture/ClothParts/Accessory_Female_Mid
+Accessory	0	2	アクセサリー（下級・女性）	2D/Texture/ClothParts/Accessory_Female_Budget
+Accessory	1	0	アクセサリー（高級・男性）	2D/Texture/ClothParts/Accessory_Male_Premium
+Accessory	1	1	アクセサリー（中級・男性）	2D/Texture/ClothParts/Accessory_Male_Mid
+Accessory	1	2	アクセサリー（下級・男性）	2D/Texture/ClothParts/Accessory_Male_Budget
+Bag	0	0	バッグ（高級・女性）	2D/Texture/ClothParts/Bag_Female_Premium
+Bag	0	1	バッグ（中級・女性）	2D/Texture/ClothParts/Bag_Female_Mid
+Bag	0	2	バッグ（下級・女性）	2D/Texture/ClothParts/Bag_Female_Budget
+Bag	1	0	バッグ（高級・男性）	2D/Texture/ClothParts/Bag_Male_Premium
+Bag	1	1	バッグ（中級・男性）	2D/Texture/ClothParts/Bag_Male_Mid
+Bag	1	2	バッグ（下級・男性）	2D/Texture/ClothParts/Bag_Male_Budget
+HairAccessory	0	0	ヘアアクセ（高級・女性）	2D/Texture/ClothParts/HairAccessory_Female_Premium
+HairAccessory	0	1	ヘアアクセ（中級・女性）	2D/Texture/ClothParts/HairAccessory_Female_Mid
+HairAccessory	0	2	ヘアアクセ（下級・女性）	2D/Texture/ClothParts/HairAccessory_Female_Budget
+HairAccessory	1	0	ヘアアクセ（高級・男性）	2D/Texture/ClothParts/HairAccessory_Male_Premium
+HairAccessory	1	1	ヘアアクセ（中級・男性）	2D/Texture/ClothParts/HairAccessory_Male_Mid
+HairAccessory	1	2	ヘアアクセ（下級・男性）	2D/Texture/ClothParts/HairAccessory_Male_Budget

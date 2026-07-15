@@ -1,0 +1,225 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 213861e28cb4042329c816948ff32ef0, type: 3}
+  m_Name: PartsMaster
+  m_EditorClassIdentifier: Assembly-CSharp::PartsMaster
+  Data:
+  - PartType: 0
+    Gender: 0
+    Grade: 0
+    Name: "\u30C8\u30C3\u30D7\u30B9\uFF08\u9AD8\u7D1A\u30FB\u5973\u6027\uFF09"
+    TexturePath: 2D/Texture/ClothParts/Top_Female_Premium
+  - PartType: 0
+    Gender: 0
+    Grade: 1
+    Name: "\u30C8\u30C3\u30D7\u30B9\uFF08\u4E2D\u7D1A\u30FB\u5973\u6027\uFF09"
+    TexturePath: 2D/Texture/ClothParts/Top_Female_Mid
+  - PartType: 0
+    Gender: 0
+    Grade: 2
+    Name: "\u30C8\u30C3\u30D7\u30B9\uFF08\u4E0B\u7D1A\u30FB\u5973\u6027\uFF09"
+    TexturePath: 2D/Texture/ClothParts/Top_Female_Budget
+  - PartType: 0
+    Gender: 1
+    Grade: 0
+    Name: "\u30C8\u30C3\u30D7\u30B9\uFF08\u9AD8\u7D1A\u30FB\u7537\u6027\uFF09"
+    TexturePath: 2D/Texture/ClothParts/Top_Male_Premium
+  - PartType: 0
+    Gender: 1
+    Grade: 1
+    Name: "\u30C8\u30C3\u30D7\u30B9\uFF08\u4E2D\u7D1A\u30FB\u7537\u6027\uFF09"
+    TexturePath: 2D/Texture/ClothParts/Top_Male_Mid
+  - PartType: 0
+    Gender: 1
+    Grade: 2
+    Name: "\u30C8\u30C3\u30D7\u30B9\uFF08\u4E0B\u7D1A\u30FB\u7537\u6027\uFF09"
+    TexturePath: 2D/Texture/ClothParts/Top_Male_Budget
+  - PartType: 1
+    Gender: 0
+    Grade: 0
+    Name: "\u30A4\u30F3\u30CA\u30FC\uFF08\u9AD8\u7D1A\u30FB\u5973\u6027\uFF09"
+    TexturePath: 2D/Texture/ClothParts/Inner_Female_Premium
+  - PartType: 1
+    Gender: 0
+    Grade: 1
+    Name: "\u30A4\u30F3\u30CA\u30FC\uFF08\u4E2D\u7D1A\u30FB\u5973\u6027\uFF09"
+    TexturePath: 2D/Texture/ClothParts/Inner_Female_Mid
+  - PartType: 1
+    Gender: 0
+    Grade: 2
+    Name: "\u30A4\u30F3\u30CA\u30FC\uFF08\u4E0B\u7D1A\u30FB\u5973\u6027\uFF09"
+    TexturePath: 2D/Texture/ClothParts/Inner_Female_Budget
+  - PartType: 1
+    Gender: 1
+    Grade: 0
+    Name: "\u30A4\u30F3\u30CA\u30FC\uFF08\u9AD8\u7D1A\u30FB\u7537\u6027\uFF09"
+    TexturePath: 2D/Texture/ClothParts/Inner_Male_Premium
+  - PartType: 1
+    Gender: 1
+    Grade: 1
+    Name: "\u30A4\u30F3\u30CA\u30FC\uFF08\u4E2D\u7D1A\u30FB\u7537\u6027\uFF09"
+    TexturePath: 2D/Texture/ClothParts/Inner_Male_Mid
+  - PartType: 1
+    Gender: 1
+    Grade: 2
+    Name: "\u30A4\u30F3\u30CA\u30FC\uFF08\u4E0B\u7D1A\u30FB\u7537\u6027\uFF09"
+    TexturePath: 2D/Texture/ClothParts/Inner_Male_Budget
+  - PartType: 2
+    Gender: 0
+    Grade: 0
+    Name: "\u30DC\u30C8\u30E0\u30B9\uFF08\u9AD8\u7D1A\u30FB\u5973\u6027\uFF09"
+    TexturePath: 2D/Texture/ClothParts/Bottom_Female_Premium
+  - PartType: 2
+    Gender: 0
+    Grade: 1
+    Name: "\u30DC\u30C8\u30E0\u30B9\uFF08\u4E2D\u7D1A\u30FB\u5973\u6027\uFF09"
+    TexturePath: 2D/Texture/ClothParts/Bottom_Female_Mid
+  - PartType: 2
+    Gender: 0
+    Grade: 2
+    Name: "\u30DC\u30C8\u30E0\u30B9\uFF08\u4E0B\u7D1A\u30FB\u5973\u6027\uFF09"
+    TexturePath: 2D/Texture/ClothParts/Bottom_Female_Budget
+  - PartType: 2
+    Gender: 1
+    Grade: 0
+    Name: "\u30DC\u30C8\u30E0\u30B9\uFF08\u9AD8\u7D1A\u30FB\u7537\u6027\uFF09"
+    TexturePath: 2D/Texture/ClothParts/Bottom_Male_Premium
+  - PartType: 2
+    Gender: 1
+    Grade: 1
+    Name: "\u30DC\u30C8\u30E0\u30B9\uFF08\u4E2D\u7D1A\u30FB\u7537\u6027\uFF09"
+    TexturePath: 2D/Texture/ClothParts/Bottom_Male_Mid
+  - PartType: 2
+    Gender: 1
+    Grade: 2
+    Name: "\u30DC\u30C8\u30E0\u30B9\uFF08\u4E0B\u7D1A\u30FB\u7537\u6027\uFF09"
+    TexturePath: 2D/Texture/ClothParts/Bottom_Male_Budget
+  - PartType: 3
+    Gender: 0
+    Grade: 0
+    Name: "\u30B7\u30E5\u30FC\u30BA\uFF08\u9AD8\u7D1A\u30FB\u5973\u6027\uFF09"
+    TexturePath: 2D/Texture/ClothParts/Shoes_Female_Premium
+  - PartType: 3
+    Gender: 0
+    Grade: 1
+    Name: "\u30B7\u30E5\u30FC\u30BA\uFF08\u4E2D\u7D1A\u30FB\u5973\u6027\uFF09"
+    TexturePath: 2D/Texture/ClothParts/Shoes_Female_Mid
+  - PartType: 3
+    Gender: 0
+    Grade: 2
+    Name: "\u30B7\u30E5\u30FC\u30BA\uFF08\u4E0B\u7D1A\u30FB\u5973\u6027\uFF09"
+    TexturePath: 2D/Texture/ClothParts/Shoes_Female_Budget
+  - PartType: 3
+    Gender: 1
+    Grade: 0
+    Name: "\u30B7\u30E5\u30FC\u30BA\uFF08\u9AD8\u7D1A\u30FB\u7537\u6027\uFF09"
+    TexturePath: 2D/Texture/ClothParts/Shoes_Male_Premium
+  - PartType: 3
+    Gender: 1
+    Grade: 1
+    Name: "\u30B7\u30E5\u30FC\u30BA\uFF08\u4E2D\u7D1A\u30FB\u7537\u6027\uFF09"
+    TexturePath: 2D/Texture/ClothParts/Shoes_Male_Mid
+  - PartType: 3
+    Gender: 1
+    Grade: 2
+    Name: "\u30B7\u30E5\u30FC\u30BA\uFF08\u4E0B\u7D1A\u30FB\u7537\u6027\uFF09"
+    TexturePath: 2D/Texture/ClothParts/Shoes_Male_Budget
+  - PartType: 4
+    Gender: 0
+    Grade: 0
+    Name: "\u30A2\u30AF\u30BB\u30B5\u30EA\u30FC\uFF08\u9AD8\u7D1A\u30FB\u5973\u6027\uFF09"
+    TexturePath: 2D/Texture/ClothParts/Accessory_Female_Premium
+  - PartType: 4
+    Gender: 0
+    Grade: 1
+    Name: "\u30A2\u30AF\u30BB\u30B5\u30EA\u30FC\uFF08\u4E2D\u7D1A\u30FB\u5973\u6027\uFF09"
+    TexturePath: 2D/Texture/ClothParts/Accessory_Female_Mid
+  - PartType: 4
+    Gender: 0
+    Grade: 2
+    Name: "\u30A2\u30AF\u30BB\u30B5\u30EA\u30FC\uFF08\u4E0B\u7D1A\u30FB\u5973\u6027\uFF09"
+    TexturePath: 2D/Texture/ClothParts/Accessory_Female_Budget
+  - PartType: 4
+    Gender: 1
+    Grade: 0
+    Name: "\u30A2\u30AF\u30BB\u30B5\u30EA\u30FC\uFF08\u9AD8\u7D1A\u30FB\u7537\u6027\uFF09"
+    TexturePath: 2D/Texture/ClothParts/Accessory_Male_Premium
+  - PartType: 4
+    Gender: 1
+    Grade: 1
+    Name: "\u30A2\u30AF\u30BB\u30B5\u30EA\u30FC\uFF08\u4E2D\u7D1A\u30FB\u7537\u6027\uFF09"
+    TexturePath: 2D/Texture/ClothParts/Accessory_Male_Mid
+  - PartType: 4
+    Gender: 1
+    Grade: 2
+    Name: "\u30A2\u30AF\u30BB\u30B5\u30EA\u30FC\uFF08\u4E0B\u7D1A\u30FB\u7537\u6027\uFF09"
+    TexturePath: 2D/Texture/ClothParts/Accessory_Male_Budget
+  - PartType: 5
+    Gender: 0
+    Grade: 0
+    Name: "\u30D0\u30C3\u30B0\uFF08\u9AD8\u7D1A\u30FB\u5973\u6027\uFF09"
+    TexturePath: 2D/Texture/ClothParts/Bag_Female_Premium
+  - PartType: 5
+    Gender: 0
+    Grade: 1
+    Name: "\u30D0\u30C3\u30B0\uFF08\u4E2D\u7D1A\u30FB\u5973\u6027\uFF09"
+    TexturePath: 2D/Texture/ClothParts/Bag_Female_Mid
+  - PartType: 5
+    Gender: 0
+    Grade: 2
+    Name: "\u30D0\u30C3\u30B0\uFF08\u4E0B\u7D1A\u30FB\u5973\u6027\uFF09"
+    TexturePath: 2D/Texture/ClothParts/Bag_Female_Budget
+  - PartType: 5
+    Gender: 1
+    Grade: 0
+    Name: "\u30D0\u30C3\u30B0\uFF08\u9AD8\u7D1A\u30FB\u7537\u6027\uFF09"
+    TexturePath: 2D/Texture/ClothParts/Bag_Male_Premium
+  - PartType: 5
+    Gender: 1
+    Grade: 1
+    Name: "\u30D0\u30C3\u30B0\uFF08\u4E2D\u7D1A\u30FB\u7537\u6027\uFF09"
+    TexturePath: 2D/Texture/ClothParts/Bag_Male_Mid
+  - PartType: 5
+    Gender: 1
+    Grade: 2
+    Name: "\u30D0\u30C3\u30B0\uFF08\u4E0B\u7D1A\u30FB\u7537\u6027\uFF09"
+    TexturePath: 2D/Texture/ClothParts/Bag_Male_Budget
+  - PartType: 6
+    Gender: 0
+    Grade: 0
+    Name: "\u30D8\u30A2\u30A2\u30AF\u30BB\uFF08\u9AD8\u7D1A\u30FB\u5973\u6027\uFF09"
+    TexturePath: 2D/Texture/ClothParts/HairAccessory_Female_Premium
+  - PartType: 6
+    Gender: 0
+    Grade: 1
+    Name: "\u30D8\u30A2\u30A2\u30AF\u30BB\uFF08\u4E2D\u7D1A\u30FB\u5973\u6027\uFF09"
+    TexturePath: 2D/Texture/ClothParts/HairAccessory_Female_Mid
+  - PartType: 6
+    Gender: 0
+    Grade: 2
+    Name: "\u30D8\u30A2\u30A2\u30AF\u30BB\uFF08\u4E0B\u7D1A\u30FB\u5973\u6027\uFF09"
+    TexturePath: 2D/Texture/ClothParts/HairAccessory_Female_Budget
+  - PartType: 6
+    Gender: 1
+    Grade: 0
+    Name: "\u30D8\u30A2\u30A2\u30AF\u30BB\uFF08\u9AD8\u7D1A\u30FB\u7537\u6027\uFF09"
+    TexturePath: 2D/Texture/ClothParts/HairAccessory_Male_Premium
+  - PartType: 6
+    Gender: 1
+    Grade: 1
+    Name: "\u30D8\u30A2\u30A2\u30AF\u30BB\uFF08\u4E2D\u7D1A\u30FB\u7537\u6027\uFF09"
+    TexturePath: 2D/Texture/ClothParts/HairAccessory_Male_Mid
+  - PartType: 6
+    Gender: 1
+    Grade: 2
+    Name: "\u30D8\u30A2\u30A2\u30AF\u30BB\uFF08\u4E0B\u7D1A\u30FB\u7537\u6027\uFF09"
+    TexturePath: 2D/Texture/ClothParts/HairAccessory_Male_Budget

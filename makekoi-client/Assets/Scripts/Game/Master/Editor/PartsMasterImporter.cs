@@ -1,17 +1,19 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
+using Makekoi.PartnerCreate;
 using UnityEditor;
 using UnityEngine;
 
-public class AdvMasterImporter
+public class PartsMasterImporter
 {
-    private const string TsvPath = "Assets/Scripts/Game/Adv/Editor/adv_master_source.tsv";
-    private const string OutputPath = "Assets/Resources/Master/AdvMaster.asset";
+    private const string TsvPath = "Assets/Scripts/Game/Master/Editor/parts_master_source.tsv";
+    private const string OutputPath = "Assets/Resources/Master/PartsMaster.asset";
 
-    [MenuItem("Makekoi/AdvMaster/Build")]
+    [MenuItem("Makekoi/PartsMaster/Build")]
     public static void Build()
     {
-        var dataList = new List<AdvMaster>();
+        var dataList = new List<PartsMaster>();
 
         var lines = File.ReadAllLines(TsvPath);
         foreach (var line in lines)
@@ -23,15 +25,13 @@ public class AdvMasterImporter
             if (columns.Length < 5)
                 continue;
 
-            var record = new AdvMaster
+            var record = new PartsMaster
             {
-                Code = columns[0].Trim(),
+                PartType = (PartType)Enum.Parse(typeof(PartType), columns[0].Trim()),
                 Gender = int.Parse(columns[1].Trim()),
-                ScriptIndex = int.Parse(columns[2].Trim()),
-                CharaEmotionType = int.Parse(columns[3].Trim()),
-                Message = columns[4].Trim()
-                    .Replace("\\n", "\n")
-                    .Replace("¥n", "\n"),
+                Grade = int.Parse(columns[2].Trim()),
+                Name = columns[3].Trim(),
+                TexturePath = columns[4].Trim(),
             };
             dataList.Add(record);
         }
@@ -39,10 +39,10 @@ public class AdvMasterImporter
         if (!AssetDatabase.IsValidFolder("Assets/Resources/Master"))
             AssetDatabase.CreateFolder("Assets/Resources", "Master");
 
-        var master = AssetDatabase.LoadAssetAtPath<AdvTable>(OutputPath);
+        var master = AssetDatabase.LoadAssetAtPath<PartsTable>(OutputPath);
         if (master == null)
         {
-            master = ScriptableObject.CreateInstance<AdvTable>();
+            master = ScriptableObject.CreateInstance<PartsTable>();
             master.Data = dataList.ToArray();
             AssetDatabase.CreateAsset(master, OutputPath);
         }
@@ -55,6 +55,6 @@ public class AdvMasterImporter
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
 
-        Debug.Log($"[AdvMasterImporter] {dataList.Count} entries → {OutputPath}");
+        Debug.Log($"[PartsMasterImporter] {dataList.Count} entries → {OutputPath}");
     }
 }
