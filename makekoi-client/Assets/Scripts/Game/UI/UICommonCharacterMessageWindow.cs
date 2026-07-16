@@ -30,7 +30,7 @@ public class UICommonCharacterMessageWindow : WindowBase
     private async UniTask PlayAsync(string code, GenderType gender)
     {
         var ct = this.GetCancellationTokenOnDestroy();
-        var records = AdvMasterContainer.GetRecords(code, gender);
+        var records = AdvTableContainer.GetRecords(code, gender);
 
         _messageTextObject.SetActive(false);
         _confirmButton.gameObject.SetActive(false);

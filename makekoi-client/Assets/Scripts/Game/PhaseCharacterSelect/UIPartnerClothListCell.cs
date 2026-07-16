@@ -9,4 +9,10 @@ public class UIPartnerClothListCell : MonoBehaviour
     {
         _importantMarkObj.SetActive(false);
     }
+    public void UpdateCell(PartnerPartData partData)
+    {
+        var image = GetComponent<Image>();
+        image.sprite = partData.PartSprite;
+        _importantMarkObj.SetActive(false);
+    }
 }

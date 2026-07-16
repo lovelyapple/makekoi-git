@@ -5,6 +5,7 @@ using R3;
 public class UIGlobalHeaderController : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _currentMoneyText;
+    [SerializeField] private UIDebugButtonView _uiDebugButtonView;
     private int _currentPlayerMoney = 0;
     private void Awake()
     {
