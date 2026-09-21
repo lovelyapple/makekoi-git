@@ -53,9 +53,10 @@ public class ShoppingModel : SingletonBase<ShoppingModel>
     public void StartShopping()
     {
         _currentPartIndex = 0;
+        _results.Clear();
         foreach (PartType partType in System.Enum.GetValues(typeof(PartType)))
         {
-            _results.Add(partType, null);
+            _results[partType] = null;
         }
     }
 

@@ -7,6 +7,7 @@ public class UIGameContentHolder : MonoBehaviour
     public GamePhaseContentType ButtonType => _buttonType;
     public bool IsContentLoaded => _contentInstance != null;
     public Observable<GamePhaseContentType> OnRequestGoToNextPhase() => _contentInstance.OnRequestGoToNextPhase();
+    public GamePhaseWindowBase Content => _contentInstance;
     private GamePhaseWindowBase _contentInstance;
     private void Start()
     {
