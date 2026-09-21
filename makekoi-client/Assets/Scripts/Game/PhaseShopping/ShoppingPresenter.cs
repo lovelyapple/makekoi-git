@@ -98,6 +98,7 @@ public class ShoppingPresenter : GamePhaseWindowBase
         _currentPartStateView.UpdateBlink(UIShoppingCurrentPartStateView.BlinkSpeed.Slow);
 
         // _currentGameController.Init(_currentPartStateView);
+        _charaReactionView.CloseReactionMsgBox();
         _currentGameController.OnGameStartRequested();
         await RunPhaseTimeLeftAsync();
         OnMiniGamePhaseFinished();

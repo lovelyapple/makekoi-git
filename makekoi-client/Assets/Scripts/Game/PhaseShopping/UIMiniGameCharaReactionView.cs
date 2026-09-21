@@ -16,6 +16,12 @@ public class UIMiniGameCharaReactionView : MonoBehaviour
         }
         var spriteResource = ResourceContainer.Instance.GetSpriteByPath(record.TexturePath);
         _characterImage.sprite = spriteResource;
+
+        _reactionMessageText.gameObject.SetActive(true);
         _reactionMessageText.text = record.Message;
+    }
+    public void CloseReactionMsgBox()
+    {
+        _reactionMessageText.gameObject.SetActive(false);
     }
 }
