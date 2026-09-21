@@ -9,6 +9,11 @@ public class UIMiniGameCharaReactionView : MonoBehaviour
     public void UpdateCharacterReaction(StaffReactionCode reactionCode)
     {
         var record = StaffReactionTableContainer.GetRandomRecord(reactionCode);
+        if (record == null)
+        {
+            Debug.LogWarning($"[UIMiniGameCharaReactionView] StaffReactionMaster に {reactionCode} のレコードがありません");
+            return;
+        }
         var spriteResource = ResourceContainer.Instance.GetSpriteByPath(record.TexturePath);
         _characterImage.sprite = spriteResource;
         _reactionMessageText.text = record.Message;

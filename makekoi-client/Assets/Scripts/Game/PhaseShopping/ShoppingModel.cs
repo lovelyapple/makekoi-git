@@ -25,13 +25,13 @@ public sealed class MiniGameRequestData
 public sealed class MiniGameResultData
 {
     public readonly PartType PartType;
-    public readonly List<PartnerPartData> Parts;
+    public readonly PartnerPartData ResultPart;
     public readonly long CostTime;
     public readonly long CostMoney;
-    public MiniGameResultData(PartType partType, List<PartnerPartData> parts, long costTime, long costMoney)
+    public MiniGameResultData(PartType partType, PartnerPartData resultPart, long costTime, long costMoney)
     {
         PartType = partType;
-        Parts = parts;
+        ResultPart = resultPart;
         CostTime = costTime;
         CostMoney = costMoney;
     }
@@ -71,6 +71,9 @@ public class ShoppingModel : SingletonBase<ShoppingModel>
             _ => MiniGameType.Dogeza,
         };
 
+        // todo 暫定
+        miniGameType = MiniGameType.Dogeza;
+
         var parts = new List<PartnerPartData>();
         foreach (PartGrade grade in System.Enum.GetValues(typeof(PartGrade)))
         {
@@ -87,14 +90,21 @@ public class ShoppingModel : SingletonBase<ShoppingModel>
 
         if (_currentPartIndex >= System.Enum.GetValues(typeof(PartType)).Length)
         {
-            // All parts finished
-            Debug.Log("All parts finished");
-            foreach (var result in _results)
-            {
-                Debug.Log($"PartType: {result.Key}, CostTime: {result.Value.CostTime}, CostMoney: {result.Value.CostMoney}");
-            }
+            OnShoppingFinished();
         }
-
+        else
+        {
+            StartMiniGame();
+        }
+    }
+    public void OnShoppingFinished()
+    {
+        // All parts finished
+        Debug.Log("All parts finished");
+        foreach (var result in _results)
+        {
+            Debug.Log($"PartType: {result.Key}, CostTime: {result.Value.CostTime}, CostMoney: {result.Value.CostMoney}");
+        }
         _shoppingFinished.OnNext(Unit.Default);
     }
 }

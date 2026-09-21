@@ -10,7 +10,8 @@ public class ShoppingPresenter : GamePhaseWindowBase
 {
     [SerializeField] private UIMiniGameCharaReactionView _charaReactionView;
     [SerializeField] private UIShoppingCurrentPartStateView _currentPartStateView;
-    [SerializeField] private List<IMiniGame> _miniGameControllers;
+    // interface のままだと Unity がシリアライズできず Inspector に出ないため、基底クラスで受ける
+    [SerializeField] private List<MiniGameBase> _miniGameControllers;
     [SerializeField] private Button _welcomeReactionButton;
     [SerializeField] private GameObject _miniGameRoot;
     #region MiniGame_phase
@@ -27,6 +28,13 @@ public class ShoppingPresenter : GamePhaseWindowBase
             .Subscribe(OnStartMiniGameRequested)
             .AddTo(this);
 
+
+        foreach (var miniGameController in _miniGameControllers)
+        {
+            miniGameController.StaffReactionRequestedObservable()
+                .Subscribe(code => _charaReactionView.UpdateCharacterReaction(code))
+                .AddTo(this);
+        }
 
         DebugModel.Instance.OnFinishCurrentMiniGameRequested()
             .Where(_ => _currentGameController != null)
@@ -73,7 +81,7 @@ public class ShoppingPresenter : GamePhaseWindowBase
         {
             if (miniGameController.ThisMiniGameType == requestData.MiniGameType)
             {
-                miniGameController.OnGameLoaded();
+                miniGameController.OnGameLoaded(requestData);
                 _currentGameController = miniGameController;
             }
             else
@@ -89,16 +97,17 @@ public class ShoppingPresenter : GamePhaseWindowBase
         _currentPartGrade = PartGrade.Premium;
         _currentPartStateView.UpdateBlink(UIShoppingCurrentPartStateView.BlinkSpeed.Slow);
 
-        _currentGameController.Init(_currentPartStateView);
+        // _currentGameController.Init(_currentPartStateView);
         _currentGameController.OnGameStartRequested();
-
         await RunPhaseTimeLeftAsync();
-
+        OnMiniGamePhaseFinished();
         return Unit.Default;
     }
     private void OnMiniGamePhaseFinished()
     {
         _currentGameController.OnGameFinishRequested();
+        var result = _currentGameController.CurrentMiniGameResult;
+        ShoppingModel.Instance.OnMiniGameFinished(result);
     }
     private async UniTask<Unit> RunPhaseTimeLeftAsync()
     {
@@ -110,6 +119,7 @@ public class ShoppingPresenter : GamePhaseWindowBase
             var prev = _currentMiniGamePhaseTimeLeft;
             await UniTask.DelayFrame(1, cancellationToken: this.GetCancellationTokenOnDestroy());
             _currentMiniGamePhaseTimeLeft -= Time.deltaTime;
+            _currentPartStateView.UpdateFillAmount(_currentMiniGamePhaseTimeLeft / MiniGamePhaseDuration);
 
             if (prev > 3f && _currentMiniGamePhaseTimeLeft <= 3f)
             {

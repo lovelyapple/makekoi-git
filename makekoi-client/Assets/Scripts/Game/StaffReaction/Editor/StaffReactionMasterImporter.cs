@@ -13,6 +13,9 @@ public class StaffReactionMasterImporter
     public static void Build()
     {
         var dataList = new List<StaffReactionMaster>();
+        // 主キーは (Code, PatternCode) の複合キー。Code の重複はバリエーションとして正常だが、
+        // PatternCode まで重複するとその1行だけ抽選確率が上がってしまうため検出する
+        var usedKeys = new HashSet<(StaffReactionCode, int)>();
 
         var lines = File.ReadAllLines(TsvPath);
         foreach (var line in lines)
@@ -33,6 +36,11 @@ public class StaffReactionMasterImporter
                     .Replace("\\n", "\n")
                     .Replace("¥n", "\n"),
             };
+            if (!usedKeys.Add((record.Code, record.PatternCode)))
+            {
+                Debug.LogError($"[StaffReactionMasterImporter] 主キー重複: {record.Code} / PatternCode={record.PatternCode}");
+            }
+
             dataList.Add(record);
         }
 

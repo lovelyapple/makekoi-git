@@ -23,6 +23,10 @@ public class UIShoppingCurrentPartStateView : MonoBehaviour
     {
         _partnerClothListCell.UpdateCell(partData);
     }
+    public void UpdateFillAmount(float fillAmount)
+    {
+        _timeLeftFillBgImage.fillAmount = fillAmount;
+    }
     // Removed unnecessary empty block
     public void UpdateBlink(BlinkSpeed speed)
     {
