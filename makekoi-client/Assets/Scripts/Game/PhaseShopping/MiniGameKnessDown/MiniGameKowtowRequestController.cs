@@ -98,6 +98,8 @@ public class MiniGameKowtowRequestController : MiniGameBase
         _barScaleCts?.Cancel();
         _barScaleCts?.Dispose();
         _barScaleCts = null;
+        gameObject.SetActive(false);
+        SetBarFillAmount(0, false);
         // CurrentPartStateView = null;
     }
 

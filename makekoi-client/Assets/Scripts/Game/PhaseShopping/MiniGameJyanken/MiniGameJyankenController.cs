@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading;
+using Cysharp.Threading.Tasks;
 using Makekoi.PartnerCreate;
 using R3;
 using UnityEngine;
@@ -22,6 +23,9 @@ public class MiniGameJyankenController : MiniGameBase
     [SerializeField] private RectTransform _pointCenter;
     [SerializeField] private RectTransform _pointRight;
 
+    [SerializeField] private Image _winFrame;
+    [SerializeField] private Image _loseFrame;
+
     private enum Hand
     {
         Rock,
@@ -31,6 +35,7 @@ public class MiniGameJyankenController : MiniGameBase
 
     private readonly List<Button> _buttons = new();
     private CancellationTokenSource _cts;
+    private CancellationTokenSource _resultFrameCts;
     private Hand _referenceHand;
     private int _barValue;
     private bool _isGameActive;
@@ -102,10 +107,12 @@ public class MiniGameJyankenController : MiniGameBase
         if (result == 1)
         {
             SetBarValue(_barValue + 1);
+            PlayResultFrame(true);
         }
         else if (result == -1)
         {
             SetBarValue(_barValue - 1);
+            PlayResultFrame(false);
         }
 
         SetButtonsInteractable(false);
@@ -206,5 +213,46 @@ public class MiniGameJyankenController : MiniGameBase
         _cts?.Cancel();
         _cts?.Dispose();
         _cts = null;
+        _resultFrameCts?.Cancel();
+        _resultFrameCts?.Dispose();
+        _resultFrameCts = null;
+        gameObject.SetActive(false);
+    }
+
+    private void PlayResultFrame(bool isWin)
+    {
+        _resultFrameCts?.Cancel();
+        _resultFrameCts?.Dispose();
+        _resultFrameCts = new CancellationTokenSource();
+
+        PlayResultFrameAsync(isWin, _resultFrameCts.Token).Forget();
+    }
+
+    private async UniTaskVoid PlayResultFrameAsync(bool isWin, CancellationToken ct)
+    {
+        var targetFrame = isWin ? _winFrame : _loseFrame;
+        var otherFrame = isWin ? _loseFrame : _winFrame;
+        otherFrame.color = SetAlpha(otherFrame.color, 0f);
+        targetFrame.color = SetAlpha(targetFrame.color, 0f);
+        targetFrame.gameObject.SetActive(true);
+
+        const float duration = 0.5f;
+        var elapsed = 0f;
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            var pingPong = Mathf.Sin(Mathf.Clamp01(elapsed / duration) * Mathf.PI);
+            targetFrame.color = SetAlpha(targetFrame.color, pingPong);
+            await UniTask.Yield(PlayerLoopTiming.Update, ct);
+        }
+
+        targetFrame.color = SetAlpha(targetFrame.color, 0f);
+        targetFrame.gameObject.SetActive(false);
+    }
+
+    private static Color SetAlpha(Color color, float alpha)
+    {
+        color.a = alpha;
+        return color;
     }
 }

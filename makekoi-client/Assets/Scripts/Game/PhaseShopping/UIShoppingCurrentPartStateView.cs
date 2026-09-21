@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class UIShoppingCurrentPartStateView : MonoBehaviour
 {
     [SerializeField] private UIPartnerClothListCell _partnerClothListCell;
+    [SerializeField] private UIPartnerClothListCell _nextPartnerClothListCell;
     [SerializeField] private Image _timeLeftFillImage;
     [SerializeField] private Image _timeLeftFillBgImage;
 
@@ -22,6 +23,12 @@ public class UIShoppingCurrentPartStateView : MonoBehaviour
     public void UpdatePartData(PartnerPartData partData)
     {
         _partnerClothListCell.UpdateCell(partData);
+        _nextPartnerClothListCell.gameObject.SetActive(false);
+    }
+    public void UpdateNextPartData(PartnerPartData partData)
+    {
+        _nextPartnerClothListCell.UpdateCell(partData);
+        _nextPartnerClothListCell.gameObject.SetActive(true);
     }
     public void UpdateFillAmount(float fillAmount)
     {

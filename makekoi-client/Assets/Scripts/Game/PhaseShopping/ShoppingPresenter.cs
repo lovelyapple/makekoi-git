@@ -17,10 +17,13 @@ public class ShoppingPresenter : GamePhaseWindowBase
     [SerializeField] private Button _welcomeReactionButton;
     [SerializeField] private GameObject _miniGameRoot;
     #region MiniGame_phase
-    private const float MiniGamePhaseDuration = 5f;
+    private const float DogezaPhaseDuration = 5f;
+    private const float TimingTapPhaseDuration = 10f;
+    private const float JyankenPhaseDuration = 5f;
     // ロード時のアイドル台詞を見せてからゲームを開始するまでの間
     private const float MiniGameIdleDuration = 1.5f;
     private float _currentMiniGamePhaseTimeLeft = 0f;
+    private float _currentMiniGamePhaseDuration;
     private PartType _currentPartType;
     private PartGrade _currentPartGrade;
     private IMiniGame _currentGameController;
@@ -82,20 +85,35 @@ public class ShoppingPresenter : GamePhaseWindowBase
     {
         _currentPartType = requestData.PartType;
         _miniGameRoot.SetActive(true);
-        _currentMiniGamePhaseTimeLeft = MiniGamePhaseDuration;
+        _currentMiniGamePhaseDuration = GetMiniGamePhaseDuration(requestData.MiniGameType);
+        _currentMiniGamePhaseTimeLeft = _currentMiniGamePhaseDuration;
 
         // 狙う対象として最上位グレードのパーツを出しておく
-        var targetPart = requestData.Parts.Find(part => part.Grade == PartGrade.Premium);
-        if (targetPart != null)
-        {
-            _currentPartStateView.UpdatePartData(targetPart);
-        }
         _currentGameController = null;
+        PerformNextPartAsync(requestData).Forget();
+    }
+    private async UniTask<Unit> PerformNextPartAsync(MiniGameRequestData miniGameRequestData)
+    {
+        // Implement the logic for starting the next part of the mini-game
+        var nextTargetPart = miniGameRequestData.Parts.Find(part => part.Grade == PartGrade.Premium);
+        if (nextTargetPart != null)
+        {
+            _currentPartStateView.UpdateNextPartData(nextTargetPart);
+        }
+
+        await UniTask.Delay(System.TimeSpan.FromSeconds(1),
+             cancellationToken: this.GetCancellationTokenOnDestroy());
+
+        if (nextTargetPart != null)
+        {
+            _currentPartStateView.UpdatePartData(nextTargetPart);
+        }
+
         foreach (var miniGameController in _miniGameControllers)
         {
-            if (miniGameController.ThisMiniGameType == requestData.MiniGameType)
+            if (miniGameController.ThisMiniGameType == miniGameRequestData.MiniGameType)
             {
-                miniGameController.OnGameLoaded(requestData);
+                miniGameController.OnGameLoaded(miniGameRequestData);
                 _currentGameController = miniGameController;
             }
             else
@@ -105,6 +123,8 @@ public class ShoppingPresenter : GamePhaseWindowBase
         }
 
         StartMinigame().Forget();
+
+        return Unit.Default;
     }
     private async UniTask<Unit> StartMinigame()
     {
@@ -169,7 +189,7 @@ public class ShoppingPresenter : GamePhaseWindowBase
     }
     private async UniTask<Unit> RunPhaseTimeLeftAsync(CancellationToken ct)
     {
-        _currentMiniGamePhaseTimeLeft = MiniGamePhaseDuration;
+        _currentMiniGamePhaseTimeLeft = _currentMiniGamePhaseDuration;
 
 
         while (_currentMiniGamePhaseTimeLeft > 0f)
@@ -177,7 +197,7 @@ public class ShoppingPresenter : GamePhaseWindowBase
             var prev = _currentMiniGamePhaseTimeLeft;
             await UniTask.DelayFrame(1, cancellationToken: ct);
             _currentMiniGamePhaseTimeLeft -= Time.deltaTime;
-            _currentPartStateView.UpdateFillAmount(_currentMiniGamePhaseTimeLeft / MiniGamePhaseDuration);
+            _currentPartStateView.UpdateFillAmount(_currentMiniGamePhaseTimeLeft / _currentMiniGamePhaseDuration);
 
             if (prev > 3f && _currentMiniGamePhaseTimeLeft <= 3f)
             {
@@ -195,6 +215,13 @@ public class ShoppingPresenter : GamePhaseWindowBase
 
         return Unit.Default;
     }
+
+    private static float GetMiniGamePhaseDuration(MiniGameType miniGameType) => miniGameType switch
+    {
+        MiniGameType.TimeTap => TimingTapPhaseDuration,
+        MiniGameType.Jyanken => JyankenPhaseDuration,
+        _ => DogezaPhaseDuration,
+    };
     private async UniTask<Unit> RunMiniGamePahseReusltConfirmAsync(MiniGameResultData result)
     {
         _charaReactionView.UpdateCharacterReaction(GetResultReactionCode(result.ResultPart.Grade));

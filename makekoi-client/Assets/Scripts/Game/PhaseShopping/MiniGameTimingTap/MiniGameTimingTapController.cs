@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class MiniGameTimingTapController : MiniGameBase
 {
+    [SerializeField] private Image _barImage;
     [SerializeField] private Button _clickButton;
     [SerializeField] private Slider _progressSlider;
     [SerializeField] private Image _leftBgRangeImage;
@@ -22,10 +23,14 @@ public class MiniGameTimingTapController : MiniGameBase
 
     [Header("StaffReaction")]
     [SerializeField] private float _reactionMinInterval = 0.8f; // リアクションのちらつき防止
+    [SerializeField] private Image _winFrame;
+    [SerializeField] private Image _loseFrame;
 
     private CancellationTokenSource _cts;
+    private CancellationTokenSource _resultFrameCts;
     private float _rangeLeft;
     private float _rangeRight;
+    private float _initialCursorMoveSpeed;
     private PartGrade _currentPartGrade;
     private bool _hasTapped;
     private int _correctTapCount;
@@ -37,6 +42,8 @@ public class MiniGameTimingTapController : MiniGameBase
 
     private void Awake()
     {
+        _initialCursorMoveSpeed = _cursorMoveSpeed;
+        SetBarFillAmount(0);
         _clickButton.OnClickAsObservable()
             .Subscribe(_ => OnButtonClicked())
             .AddTo(this);
@@ -52,9 +59,11 @@ public class MiniGameTimingTapController : MiniGameBase
         _isPenalty = false;
         _currentPartGrade = PartGrade.Budget;
         gameObject.SetActive(true);
+        SetBarFillAmount(0);
         _cts?.Cancel();
         _cts?.Dispose();
         _cts = new CancellationTokenSource();
+        _cursorMoveSpeed = _initialCursorMoveSpeed;
         ResetRange();
 
         // 交渉が始まるまでの待ちの一言
@@ -74,6 +83,7 @@ public class MiniGameTimingTapController : MiniGameBase
         _isFinishing = false;
         _isPenalty = false;
         _clickButton.interactable = true;
+        SetBarFillAmount(0);
         _progressSlider.normalizedValue = 0f;
         _progressSlider.transform.localScale = Vector3.one;
         EmitStaffReaction(StaffReactionCode.TimeTap_Request, ignoreMinInterval: true);
@@ -96,21 +106,22 @@ public class MiniGameTimingTapController : MiniGameBase
         if (_hasTapped || _isFinishing || _isPenalty) return;
 
         var cursorValue = _progressSlider.normalizedValue;
-        var distanceFromRange = cursorValue < _rangeLeft
-            ? _rangeLeft - cursorValue
-            : cursorValue > _rangeRight
-                ? cursorValue - _rangeRight
-                : 0f;
+        var inRange = cursorValue >= _rangeLeft && cursorValue <= _rangeRight;
 
-        if (distanceFromRange <= 0f)
+        Debug.Log($"Cursor Value: {cursorValue}, In Range: {inRange}, Range Left: {_rangeLeft}, Range Right: {_rangeRight}");
+
+        if (inRange)
         {
             // 範囲内 = 値引き交渉成立
             EmitStaffReaction(StaffReactionCode.TimeTap_Success);
+            PlayResultFrame(true);
             _correctTapCount++;
             _cursorMoveSpeed = Mathf.Min(
                 _maxCursorMoveSpeed,
                 _cursorMoveSpeed + _speedIncreasePerCorrectTap);
             UpdatePartGrade();
+            SetBarFillAmount(_correctTapCount);
+            ResetRange();
 
             if (_correctTapCount >= _maxCorrectTapCount)
             {
@@ -124,6 +135,11 @@ public class MiniGameTimingTapController : MiniGameBase
         {
             // 範囲外 = 値引きを断られる。しばらくタップできなくなる
             EmitStaffReaction(StaffReactionCode.TimeTap_Failure);
+            PlayResultFrame(false);
+            _correctTapCount = Mathf.Max(0, _correctTapCount - 1);
+            UpdatePartGrade();
+            SetBarFillAmount(_correctTapCount);
+            _cursorMoveSpeed = _initialCursorMoveSpeed;
             ApplyFailurePenaltyAsync(_cts.Token).Forget();
         }
     }
@@ -138,6 +154,7 @@ public class MiniGameTimingTapController : MiniGameBase
             .SuppressCancellationThrow();
         if (isCanceled) return;
 
+        ResetRange();
         _isPenalty = false;
         if (!_isFinishing && !_hasTapped)
         {
@@ -157,15 +174,16 @@ public class MiniGameTimingTapController : MiniGameBase
     {
         var width = Random.Range(_minRangeWidth, _maxRangeWidth);
         var left = Random.Range(0f, 1f - width);
-        SetupRange(left, left + width);
+        SetupRange(left, width);
     }
 
-    private void SetupRange(float leftRange, float rightRange)
+    private void SetupRange(float leftRange, float width)
     {
-        _rangeLeft = leftRange;
-        _rangeRight = rightRange;
         _leftBgRangeImage.fillAmount = leftRange;
-        _rightBgRangeImage.fillAmount = 1f - rightRange;
+        _rightBgRangeImage.fillAmount = leftRange + width;
+
+        _rangeLeft = leftRange;
+        _rangeRight = leftRange + width;
     }
 
     private async UniTaskVoid RunCursorAsync(CancellationToken ct)
@@ -217,10 +235,59 @@ public class MiniGameTimingTapController : MiniGameBase
                 : PartGrade.Budget;
     }
 
+    private void SetBarFillAmount(int correctTapCount)
+    {
+        var maxCorrectTapCount = Mathf.Max(1, _maxCorrectTapCount);
+        var clampedCorrectTapCount = Mathf.Clamp(correctTapCount, 0, maxCorrectTapCount);
+        _barImage.fillAmount = (float)clampedCorrectTapCount / maxCorrectTapCount;
+    }
+
     private void StopGame()
     {
         _cts?.Cancel();
         _cts?.Dispose();
         _cts = null;
+        _resultFrameCts?.Cancel();
+        _resultFrameCts?.Dispose();
+        _resultFrameCts = null;
+        gameObject.SetActive(false);
+    }
+
+    private void PlayResultFrame(bool isWin)
+    {
+        _resultFrameCts?.Cancel();
+        _resultFrameCts?.Dispose();
+        _resultFrameCts = new CancellationTokenSource();
+
+        PlayResultFrameAsync(isWin, _resultFrameCts.Token).Forget();
+    }
+
+    private async UniTaskVoid PlayResultFrameAsync(bool isWin, CancellationToken ct)
+    {
+        var targetFrame = isWin ? _winFrame : _loseFrame;
+        var otherFrame = isWin ? _loseFrame : _winFrame;
+        otherFrame.color = SetAlpha(otherFrame.color, 0f);
+        targetFrame.color = SetAlpha(targetFrame.color, 0f);
+        targetFrame.gameObject.SetActive(true);
+
+        const float duration = 0.5f;
+        var elapsed = 0f;
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            var normalizedTime = Mathf.Clamp01(elapsed / duration);
+            var pingPong = Mathf.Sin(normalizedTime * Mathf.PI);
+            targetFrame.color = SetAlpha(targetFrame.color, pingPong);
+            await UniTask.Yield(PlayerLoopTiming.Update, ct);
+        }
+
+        targetFrame.color = SetAlpha(targetFrame.color, 0f);
+        targetFrame.gameObject.SetActive(false);
+    }
+
+    private static Color SetAlpha(Color color, float alpha)
+    {
+        color.a = alpha;
+        return color;
     }
 }
