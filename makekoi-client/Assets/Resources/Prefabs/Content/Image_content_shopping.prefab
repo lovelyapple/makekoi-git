@@ -889,6 +889,7 @@ MonoBehaviour:
   - {fileID: 564893015842063267}
   - {fileID: 6552199189710106188}
   _miniGameResultView: {fileID: 7743691844334075197}
+  _miniGamePerformController: {fileID: 2014822213382608354}
   _welcomeReactionButton: {fileID: 2209963679645205843}
   _miniGameRoot: {fileID: 1224261778304845606}
 --- !u!114 &5697164434944167031
@@ -2162,6 +2163,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28b33f83427ba486b96c0882987fbd4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MiniGamePerformController
+  _miniGameFixLabel: {fileID: 3745398531793338232}
+  _miniGameNameGUI: {fileID: 4420131987912798273}
+  _nameRevealDelay: 0.5
+  _nameReadDuration: 1
 --- !u!1 &3214508372645162748
 GameObject:
   m_ObjectHideFlags: 0
@@ -3496,7 +3501,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u30A2\u30A4\u30C6\u30E0\u3092\u624B\u306B\u5165\u308C\u305F\uFF01"
+  m_text: "\u6B21\u306F"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 75fa37aef4fcc4202905d94c51ef1fd3, type: 2}
   m_sharedMaterial: {fileID: 6470007146901745523, guid: 75fa37aef4fcc4202905d94c51ef1fd3, type: 2}
@@ -3580,7 +3585,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 414c4749e308d46e58f5db3c0f435917, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UITextLinker
-  _titleKey: MINI_GAME_RESULT_ITEM_GOT
+  _titleKey: MINI_GAME_NEXT_IS
 --- !u!1 &5184323563491418230
 GameObject:
   m_ObjectHideFlags: 0
