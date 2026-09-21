@@ -73,6 +73,8 @@ public class ShoppingPresenter : GamePhaseWindowBase
         _welcomeReactionButton.gameObject.SetActive(true);
         await _welcomeReactionButton.OnClickAsObservable().FirstAsync(cancellationToken: ct);
 
+        // 歓迎演出はここで終わり。ミニゲーム中に残らないよう閉じる
+        _welcomeReactionButton.gameObject.SetActive(false);
         ShoppingModel.Instance.StartMiniGame();
         return Unit.Default;
     }
