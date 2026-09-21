@@ -116,13 +116,15 @@ public static class DevPhaseSceneGenerator
             }
         }
 
-        SetSingleElementList(serializedRootController, "_contentHolders", targetHolder);
-
         if (scrollView != null)
         {
             // 手動セルモードのページ一覧。1件になればドラッグも GoToIndex も無効化される。
             SetSingleElementList(new SerializedObject(scrollView), "_inspectorCells", targetHolder.gameObject);
         }
+
+        // 1ページでは GoToIndex が index 0 にクランプされ、ページ変更通知も飛ばないため
+        // UIRootController は何もしない。フッター同期は DevPhaseSceneBootstrap が代行する。
+        Object.DestroyImmediate(rootController);
 
         var bootstrapObject = new GameObject("DevPhaseSceneBootstrap");
         var bootstrap = bootstrapObject.AddComponent<DevPhaseSceneBootstrap>();

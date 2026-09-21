@@ -39,7 +39,18 @@ public class DevPhaseSceneBootstrap : MonoBehaviour
             .Subscribe(nextPhase => Debug.Log($"[DevPhaseSceneBootstrap] RequestGoToNextPhase -> {nextPhase} (開発用シーンでは遷移しません)"))
             .AddTo(this);
 
+        SyncFooter();
         _targetHolder.Content.OnEnter();
+    }
+
+    /// <summary>本番では UIRootController がやっているフッタータブの選択表示を代行する。</summary>
+    private void SyncFooter()
+    {
+        var footerController = FindFirstObjectByType<UIFooterController>(FindObjectsInactive.Include);
+        if (footerController != null)
+        {
+            footerController.OnTypeSelected(_targetHolder.ButtonType);
+        }
     }
 
     private void SetupDummySession()

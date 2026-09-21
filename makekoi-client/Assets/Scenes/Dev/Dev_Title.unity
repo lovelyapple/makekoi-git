@@ -2585,7 +2585,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 965116945}
   m_CullTransparentMesh: 1
---- !u!1 &1027790238
+--- !u!1 &1038101162
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2593,8 +2593,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1027790240}
-  - component: {fileID: 1027790239}
+  - component: {fileID: 1038101164}
+  - component: {fileID: 1038101163}
   m_Layer: 0
   m_Name: DevPhaseSceneBootstrap
   m_TagString: Untagged
@@ -2602,13 +2602,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1027790239
+--- !u!114 &1038101163
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1027790238}
+  m_GameObject: {fileID: 1038101162}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f8342a36bb6824053b7c1236f6204662, type: 3}
@@ -2617,13 +2617,13 @@ MonoBehaviour:
   _targetHolder: {fileID: 1077948819}
   _gender: 0
   _playerMoney: 30000
---- !u!4 &1027790240
+--- !u!4 &1038101164
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1027790238}
+  m_GameObject: {fileID: 1038101162}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -4042,7 +4042,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1845848784}
-  - component: {fileID: 1845848786}
   - component: {fileID: 1845848783}
   - component: {fileID: 1845848782}
   - component: {fileID: 1845848781}
@@ -4180,22 +4179,6 @@ MonoBehaviour:
   _useManualCells: 1
   _inspectorCells:
   - {fileID: 1077948817}
---- !u!114 &1845848786
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1845848779}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64967c2bb20b84c438b2db843f5444db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UIRootController
-  _contentScrollView: {fileID: 1845848785}
-  _footerController: {fileID: 338548330}
-  _contentHolders:
-  - {fileID: 1077948819}
 --- !u!1 &1870436226
 GameObject:
   m_ObjectHideFlags: 0
@@ -4929,4 +4912,4 @@ SceneRoots:
   - {fileID: 1845848784}
   - {fileID: 76322984}
   - {fileID: 1420150619}
-  - {fileID: 1027790240}
+  - {fileID: 1038101164}
