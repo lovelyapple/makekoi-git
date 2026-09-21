@@ -17,6 +17,7 @@ public class CharacterSelectPresenter : GamePhaseWindowBase
     [SerializeField] private UIPartnerWishPanel _partnerWishPanel;
     // 所持金を抽選するView
     [SerializeField] private UIMoneyLotteryPanel _moneyLotteryPanel;
+    public override GamePhaseContentType ThisPhaseContentType => GamePhaseContentType.CharaSelect;
     private void Awake()
     {
         _characterSelectView.OnPageChangedData<object>((pageIndex, data, go) =>
@@ -37,6 +38,13 @@ public class CharacterSelectPresenter : GamePhaseWindowBase
             {
                 _characterSelectView.GoToIndex((int)CharacterSelectPhase.MoneyLottery);
             }).AddTo(this);
+
+        _moneyLotteryPanel.OnConfirmObservable()
+            .Subscribe(_ =>
+            {
+                RequestGoToNextPhase();
+            }).AddTo(this);
+
 
         _genderSelectPanel.OnEnter();
     }

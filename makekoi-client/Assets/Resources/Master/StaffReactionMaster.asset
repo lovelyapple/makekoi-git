@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79dd18660720d47e380d712e541d7e14, type: 3}
+  m_Script: {fileID: 0}
   m_Name: StaffReactionMaster
-  m_EditorClassIdentifier: Assembly-CSharp::StaffReactionMaster
+  m_EditorClassIdentifier: Assembly-CSharp::StaffReactionTable
   Data:
   - Code: 0
     PatternCode: 1
