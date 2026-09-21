@@ -1912,7 +1912,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u30BF\u30C3\u30D7\u305B\u3088\uFF01"
+  m_text: "\u6B21\u3078"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 75fa37aef4fcc4202905d94c51ef1fd3, type: 2}
   m_sharedMaterial: {fileID: 6470007146901745523, guid: 75fa37aef4fcc4202905d94c51ef1fd3, type: 2}
@@ -1996,7 +1996,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 414c4749e308d46e58f5db3c0f435917, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UITextLinker
-  _titleKey: MINI_GAME_DOGEZA_BUTTON_TEXT_TAP
+  _titleKey: MINI_GAME_RESULT_BUTTON_NEXT
 --- !u!1 &2815508811949260151
 GameObject:
   m_ObjectHideFlags: 0

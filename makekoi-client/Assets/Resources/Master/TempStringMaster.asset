@@ -55,3 +55,5 @@ MonoBehaviour:
     Txt: "\u3058\u3083\u3093\u3051\u3093\u3067\u5024\u5207\u308C\uFF01"
   - Title: MINI_GAME_NEXT_IS
     Txt: "\u6B21\u306F"
+  - Title: MINI_GAME_RESULT_BUTTON_NEXT
+    Txt: "\u6B21\u3078"

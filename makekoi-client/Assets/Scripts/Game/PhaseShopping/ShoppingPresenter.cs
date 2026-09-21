@@ -84,7 +84,12 @@ public class ShoppingPresenter : GamePhaseWindowBase
         _miniGameRoot.SetActive(true);
         _currentMiniGamePhaseTimeLeft = MiniGamePhaseDuration;
 
-        // _currentPartStateView.UpdatePartData(_currentPartType, _currentPartGrade);
+        // 狙う対象として最上位グレードのパーツを出しておく
+        var targetPart = requestData.Parts.Find(part => part.Grade == PartGrade.Premium);
+        if (targetPart != null)
+        {
+            _currentPartStateView.UpdatePartData(targetPart);
+        }
         _currentGameController = null;
         foreach (var miniGameController in _miniGameControllers)
         {
