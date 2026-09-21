@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 4f4fdc1b6d1444668a89eb87160f2601, type: 3}
   m_Name: PartsMaster
   m_EditorClassIdentifier: Assembly-CSharp::PartsTable
   Data:
@@ -223,3 +223,4 @@ MonoBehaviour:
     Grade: 2
     Name: "\u30D8\u30A2\u30A2\u30AF\u30BB\uFF08\u4E0B\u7D1A\u30FB\u7537\u6027\uFF09"
     TexturePath: 2D/Texture/ClothParts/HairAccessory_Male_Budget
+
