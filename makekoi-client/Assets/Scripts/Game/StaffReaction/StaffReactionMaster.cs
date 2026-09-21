@@ -8,6 +8,15 @@ public enum StaffReactionCode
     Dogeza_Happy,
     Dogeza_Surprised,
     Dogeza_Disappointed,
+    // ミニゲーム結果（獲得グレード別のガンマの反応）
+    Result_Premium,
+    Result_Mid,
+    Result_Budget,
+    // 値段交渉ミニゲーム専用
+    TimeTap_Idle,
+    TimeTap_Request,
+    TimeTap_Success,
+    TimeTap_Failure,
 }
 
 [System.Serializable]

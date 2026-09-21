@@ -12,14 +12,19 @@ public class ShoppingPresenter : GamePhaseWindowBase
     [SerializeField] private UIShoppingCurrentPartStateView _currentPartStateView;
     // interface のままだと Unity がシリアライズできず Inspector に出ないため、基底クラスで受ける
     [SerializeField] private List<MiniGameBase> _miniGameControllers;
+    [SerializeField] private UIMiniGameResultView _miniGameResultView;
     [SerializeField] private Button _welcomeReactionButton;
     [SerializeField] private GameObject _miniGameRoot;
     #region MiniGame_phase
     private const float MiniGamePhaseDuration = 5f;
+    // ロード時のアイドル台詞を見せてからゲームを開始するまでの間
+    private const float MiniGameIdleDuration = 1.5f;
     private float _currentMiniGamePhaseTimeLeft = 0f;
     private PartType _currentPartType;
     private PartGrade _currentPartGrade;
     private IMiniGame _currentGameController;
+    private CancellationTokenSource _miniGamePhaseCts;
+    private bool _isMiniGamePhaseFinished;
     #endregion
     CancellationTokenSource _miniGameStartPerformanceCts;
     private void Awake()
@@ -44,6 +49,7 @@ public class ShoppingPresenter : GamePhaseWindowBase
     public override void OnEnter()
     {
         _miniGameRoot.SetActive(false);
+        _miniGameResultView.Close();
 
         _miniGameStartPerformanceCts = CancellationTokenSource.CreateLinkedTokenSource(this.GetCancellationTokenOnDestroy());
         PerformWelcomeReactionAsync().Forget();
@@ -98,19 +104,60 @@ public class ShoppingPresenter : GamePhaseWindowBase
         _currentPartStateView.UpdateBlink(UIShoppingCurrentPartStateView.BlinkSpeed.Slow);
 
         // _currentGameController.Init(_currentPartStateView);
+        _miniGameResultView.Close();
+
+        _isMiniGamePhaseFinished = false;
+        _miniGamePhaseCts?.Cancel();
+        _miniGamePhaseCts?.Dispose();
+        _miniGamePhaseCts = CancellationTokenSource.CreateLinkedTokenSource(this.GetCancellationTokenOnDestroy());
+
+        // OnGameLoaded で出したアイドル台詞を読ませてから開始する
+        // (待機中にデバッグ操作で終了された場合はキャンセルされるので、そのまま抜ける)
+        if (await UniTask.Delay(System.TimeSpan.FromSeconds(MiniGameIdleDuration), cancellationToken: _miniGamePhaseCts.Token)
+                .SuppressCancellationThrow())
+        {
+            return Unit.Default;
+        }
         _charaReactionView.CloseReactionMsgBox();
         _currentGameController.OnGameStartRequested();
-        await RunPhaseTimeLeftAsync();
-        OnMiniGamePhaseFinished();
+        // デバッグ等で途中終了した場合はキャンセルされるので、その場合は下の終了処理を走らせない
+        var isCanceled = await RunPhaseTimeLeftAsync(_miniGamePhaseCts.Token).SuppressCancellationThrow();
+        if (!isCanceled.IsCanceled)
+        {
+            OnMiniGamePhaseFinished();
+        }
         return Unit.Default;
     }
+    // 制限時間切れ・デバッグ操作のどちらから来ても一度だけ走るようにする
     private void OnMiniGamePhaseFinished()
     {
-        _currentGameController.OnGameFinishRequested();
-        var result = _currentGameController.CurrentMiniGameResult;
-        ShoppingModel.Instance.OnMiniGameFinished(result);
+        if (_isMiniGamePhaseFinished) return;
+        _isMiniGamePhaseFinished = true;
+        _miniGamePhaseCts?.Cancel();
+
+        FinishMiniGamePhaseAsync().Forget();
     }
-    private async UniTask<Unit> RunPhaseTimeLeftAsync()
+    private async UniTask<Unit> FinishMiniGamePhaseAsync()
+    {
+        _currentPartStateView.UpdateBlink(UIShoppingCurrentPartStateView.BlinkSpeed.None);
+
+        var gameController = _currentGameController;
+        _currentGameController = null;
+        gameController.OnGameFinishRequested();
+        var result = gameController.CurrentMiniGameResult;
+
+        if (result == null)
+        {
+            Debug.LogError($"[ShoppingPresenter] {_currentPartType} のミニゲーム結果が取得できませんでした");
+            return Unit.Default;
+        }
+
+        await RunMiniGamePahseReusltConfirmAsync(result);
+
+        ShoppingModel.Instance.OnMiniGameFinished(result);
+        return Unit.Default;
+    }
+    private async UniTask<Unit> RunPhaseTimeLeftAsync(CancellationToken ct)
     {
         _currentMiniGamePhaseTimeLeft = MiniGamePhaseDuration;
 
@@ -118,7 +165,7 @@ public class ShoppingPresenter : GamePhaseWindowBase
         while (_currentMiniGamePhaseTimeLeft > 0f)
         {
             var prev = _currentMiniGamePhaseTimeLeft;
-            await UniTask.DelayFrame(1, cancellationToken: this.GetCancellationTokenOnDestroy());
+            await UniTask.DelayFrame(1, cancellationToken: ct);
             _currentMiniGamePhaseTimeLeft -= Time.deltaTime;
             _currentPartStateView.UpdateFillAmount(_currentMiniGamePhaseTimeLeft / MiniGamePhaseDuration);
 
@@ -138,4 +185,17 @@ public class ShoppingPresenter : GamePhaseWindowBase
 
         return Unit.Default;
     }
+    private async UniTask<Unit> RunMiniGamePahseReusltConfirmAsync(MiniGameResultData result)
+    {
+        _charaReactionView.UpdateCharacterReaction(GetResultReactionCode(result.ResultPart.Grade));
+        await _miniGameResultView.ShowAndWaitConfirmAsync(result, this.GetCancellationTokenOnDestroy());
+        _charaReactionView.CloseReactionMsgBox();
+        return Unit.Default;
+    }
+    private static StaffReactionCode GetResultReactionCode(PartGrade grade) => grade switch
+    {
+        PartGrade.Premium => StaffReactionCode.Result_Premium,
+        PartGrade.Mid => StaffReactionCode.Result_Mid,
+        _ => StaffReactionCode.Result_Budget,
+    };
 }

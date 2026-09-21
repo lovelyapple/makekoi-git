@@ -24,24 +24,100 @@ MonoBehaviour:
   - Code: 3
     PatternCode: 1
     TexturePath: 2D/Texture/StaffReaction/chara_reaction_00
-    Message: "\u304A\u9858\u3044\u3057\u307E\u3059\uFF01"
+    Message: "\u2026\u2026\u305D\u306E\u89D2\u5EA6\u3067\u3001\n\u982D\u3092\u4E0B\u3052\u305F\u304A\u3064\u3082\u308A\u3067\u3059\u304B\uFF1F"
   - Code: 3
     PatternCode: 2
     TexturePath: 2D/Texture/StaffReaction/chara_reaction_00
-    Message: "\u3069\u3046\u304B\u3088\u308D\u3057\u304F\u304A\u9858\u3044\u3044\u305F\u3057\u307E\u3059\uFF01"
-  - Code: 4
-    PatternCode: 1
+    Message: "\u5E8A\u306F\u51B7\u305F\u3044\u3067\u3057\u3087\u3046\u3002\n\u2026\u2026\u307E\u3060\u3001\u7D9A\u3051\u307E\u3059\uFF1F"
+  - Code: 3
+    PatternCode: 3
     TexturePath: 2D/Texture/StaffReaction/chara_reaction_00
-    Message: "\u3042\u308A\u304C\u3068\u3046\u3054\u3056\u3044\u307E\u3059\uFF01"
-  - Code: 4
-    PatternCode: 2
-    TexturePath: 2D/Texture/StaffReaction/chara_reaction_00
-    Message: "\u5B09\u3057\u3044\u3067\u3059\uFF01"
-  - Code: 5
-    PatternCode: 1
-    TexturePath: 2D/Texture/StaffReaction/chara_reaction_00
-    Message: "\u3048\u3001\u672C\u5F53\u3067\u3059\u304B\uFF01\uFF1F"
+    Message: "\u56DE\u6570\u306F\u6570\u3048\u3066\u304A\u308A\u307E\u3059\u3002\n\u307E\u3060\u3001\u8DB3\u308A\u307E\u305B\u3093\u3002"
   - Code: 6
     PatternCode: 1
     TexturePath: 2D/Texture/StaffReaction/chara_reaction_00
-    Message: "\u305D\u3001\u305D\u3046\u3067\u3059\u304B\u2026"
+    Message: "\u4E00\u5EA6\u3084\u4E8C\u5EA6\u3067\u5024\u304C\u52D5\u304F\u3088\u3046\u306A\u3089\u3001\n\u5546\u58F2\u306B\u306A\u308A\u307E\u305B\u3093\u3088\u3002"
+  - Code: 6
+    PatternCode: 2
+    TexturePath: 2D/Texture/StaffReaction/chara_reaction_00
+    Message: "\u624B\u304C\u6B62\u307E\u308A\u307E\u3057\u305F\u306D\u3002\n\u305D\u3053\u3067\u6B62\u307E\u308B\u306A\u3089\u3001\u306F\u3058\u3081\u3068\u540C\u3058\u3067\u3059\u3002"
+  - Code: 5
+    PatternCode: 1
+    TexturePath: 2D/Texture/StaffReaction/chara_reaction_00
+    Message: "\u3042\u3089\u3002\u2026\u2026\u307E\u3060\u7D9A\u3051\u308B\u3093\u3067\u3059\u306D\u3002"
+  - Code: 5
+    PatternCode: 2
+    TexturePath: 2D/Texture/StaffReaction/chara_reaction_00
+    Message: "\u305D\u3093\u306A\u306B\u4F55\u5EA6\u3082\u2026\u2026\n\u819D\u3001\u75DB\u304F\u306F\u306A\u3044\u306E\u3067\u3059\u304B\u3002"
+  - Code: 5
+    PatternCode: 3
+    TexturePath: 2D/Texture/StaffReaction/chara_reaction_00
+    Message: "\u3061\u3087\u3001\u3061\u3087\u3063\u3068\u2026\u2026\n\u5E8A\u306B\u7A74\u304C\u7A7A\u304D\u307E\u3059\u2026\u2026\u3063"
+  - Code: 4
+    PatternCode: 1
+    TexturePath: 2D/Texture/StaffReaction/chara_reaction_00
+    Message: "\u2026\u2026\u3075\u3075\u3002\u3082\u3046\u5C11\u3057\u3060\u3051\u3001\n\u898B\u3066\u3044\u3066\u3082\u3044\u3044\u304B\u3082\u3057\u308C\u307E\u305B\u3093\u306D\u3002"
+  - Code: 4
+    PatternCode: 2
+    TexturePath: 2D/Texture/StaffReaction/chara_reaction_00
+    Message: "\u305D\u3093\u306A\u9854\u3067\u898B\u4E0A\u3052\u3089\u308C\u307E\u3057\u3066\u3082\u2026\u2026\n\u3063\u3001\u3042\u3001\u3042\u75DB\u3063\uFF01"
+  - Code: 7
+    PatternCode: 1
+    TexturePath: 2D/Texture/StaffReaction/chara_reaction_00
+    Message: "\u304A\u76EE\u304C\u9AD8\u3044\u3002\n\u305D\u306E\u5206\u3001\u3057\u3063\u304B\u308A\u9802\u304D\u307E\u3059\u3051\u308C\u3069\u3002"
+  - Code: 7
+    PatternCode: 2
+    TexturePath: 2D/Texture/StaffReaction/chara_reaction_00
+    Message: "\u3048\u3048\u3001\u305D\u308C\u304C\u4ECA\u65E5\u306E\u4E00\u756A\u3067\u3059\u3002\n\u2026\u2026\u5927\u4E8B\u306B\u306A\u3055\u3063\u3066\u304F\u3060\u3055\u3044\u306D\u3002"
+  - Code: 8
+    PatternCode: 1
+    TexturePath: 2D/Texture/StaffReaction/chara_reaction_00
+    Message: "\u59A5\u5F53\u306A\u3068\u3053\u308D\u3067\u3059\u306D\u3002\n\u60AA\u304F\u306F\u3042\u308A\u307E\u305B\u3093\u3002"
+  - Code: 8
+    PatternCode: 2
+    TexturePath: 2D/Texture/StaffReaction/chara_reaction_00
+    Message: "\u307E\u3042\u3001\u7121\u96E3\u3067\u3059\u3002\n\u2026\u2026\u7121\u96E3\u3001\u3067\u3059\u3051\u308C\u3069\u3002"
+  - Code: 9
+    PatternCode: 1
+    TexturePath: 2D/Texture/StaffReaction/chara_reaction_00
+    Message: "\u304A\u8CB7\u3044\u5F97\u54C1\u3067\u3059\u3002\n\u305D\u308C\u4EE5\u4E0A\u3067\u3082\u3001\u4EE5\u4E0B\u3067\u3082\u3042\u308A\u307E\u305B\u3093\u3002"
+  - Code: 9
+    PatternCode: 2
+    TexturePath: 2D/Texture/StaffReaction/chara_reaction_00
+    Message: "\u2026\u2026\u5B89\u3044\u3082\u306E\u306B\u306F\u3001\n\u7406\u7531\u304C\u3042\u308B\u3082\u306E\u3067\u3059\u3088\u3002"
+  - Code: 10
+    PatternCode: 1
+    TexturePath: 2D/Texture/StaffReaction/chara_reaction_00
+    Message: "\u5024\u672D\u306F\u305D\u3061\u3089\u306B\u3002\n\u304A\u78BA\u304B\u3081\u306B\u306A\u308A\u307E\u3059\u304B\uFF1F"
+  - Code: 11
+    PatternCode: 1
+    TexturePath: 2D/Texture/StaffReaction/chara_reaction_00
+    Message: "\u3055\u3066\u3002\n\u304A\u3044\u304F\u3089\u307E\u3067\u4E0B\u3052\u308D\u3068\uFF1F"
+  - Code: 11
+    PatternCode: 2
+    TexturePath: 2D/Texture/StaffReaction/chara_reaction_00
+    Message: "\u4EA4\u6E09\u306F\u5ACC\u3044\u3067\u306F\u3042\u308A\u307E\u305B\u3093\u3088\u3002\n\u2026\u2026\u52DD\u3066\u308B\u306A\u3089\u3002"
+  - Code: 12
+    PatternCode: 1
+    TexturePath: 2D/Texture/StaffReaction/chara_reaction_00
+    Message: "\u2026\u2026\u306F\u3044\u3001\u305D\u3053\u307E\u3067\u3002\n\u305D\u306E\u5024\u6BB5\u3067\u3001\u624B\u3092\u6253\u3061\u307E\u3057\u3087\u3046\u3002"
+  - Code: 12
+    PatternCode: 2
+    TexturePath: 2D/Texture/StaffReaction/chara_reaction_00
+    Message: "\u3044\u3044\u6240\u3092\u7A81\u304D\u307E\u3059\u306D\u3002\n\u2026\u2026\u3069\u3061\u3089\u3067\u5546\u58F2\u3092\uFF1F"
+  - Code: 12
+    PatternCode: 3
+    TexturePath: 2D/Texture/StaffReaction/chara_reaction_00
+    Message: "\u4ED5\u65B9\u3042\u308A\u307E\u305B\u3093\u3002\n\u4ECA\u65E5\u306E\u3068\u3053\u308D\u306F\u3001\u79C1\u306E\u8CA0\u3051\u3068\u3044\u3046\u3053\u3068\u3067\u3002"
+  - Code: 13
+    PatternCode: 1
+    TexturePath: 2D/Texture/StaffReaction/chara_reaction_00
+    Message: "\u304A\u65AD\u308A\u3057\u307E\u3059\u3002\n\u305D\u306E\u5024\u6BB5\u3067\u306F\u3001\u304A\u58F2\u308A\u3067\u304D\u307E\u305B\u3093\u3002"
+  - Code: 13
+    PatternCode: 2
+    TexturePath: 2D/Texture/StaffReaction/chara_reaction_00
+    Message: "\u7121\u7406\u3092\u4EF0\u3044\u307E\u3059\u306D\u3002\n\u2026\u2026\u5024\u5F15\u304D\u306F\u3044\u305F\u3057\u307E\u305B\u3093\u3002"
+  - Code: 13
+    PatternCode: 3
+    TexturePath: 2D/Texture/StaffReaction/chara_reaction_00
+    Message: "\u3060\u3081\u3067\u3059\u3002\n\u3046\u3061\u306F\u3001\u305D\u3046\u3044\u3046\u5546\u58F2\u306F\u3057\u3066\u304A\u308A\u307E\u305B\u3093\u306E\u3067\u3002"
