@@ -6,7 +6,7 @@ using UnityEngine.Analytics;
 public enum MiniGameType
 {
     Dogeza,
-    Quiz,
+    Jyanken,
     TimeTap,
 }
 public sealed class MiniGameRequestData
@@ -66,13 +66,10 @@ public class ShoppingModel : SingletonBase<ShoppingModel>
         var miniGameType = Random.Range(0, 3) switch
         {
             0 => MiniGameType.Dogeza,
-            1 => MiniGameType.Quiz,
+            1 => MiniGameType.Jyanken,
             2 => MiniGameType.TimeTap,
             _ => MiniGameType.Dogeza,
         };
-
-        // todo 暫定
-        miniGameType = MiniGameType.Dogeza;
 
         var parts = new List<PartnerPartData>();
         foreach (PartGrade grade in System.Enum.GetValues(typeof(PartGrade)))

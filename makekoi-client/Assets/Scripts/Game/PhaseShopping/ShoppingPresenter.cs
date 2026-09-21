@@ -13,6 +13,7 @@ public class ShoppingPresenter : GamePhaseWindowBase
     // interface のままだと Unity がシリアライズできず Inspector に出ないため、基底クラスで受ける
     [SerializeField] private List<MiniGameBase> _miniGameControllers;
     [SerializeField] private UIMiniGameResultView _miniGameResultView;
+    [SerializeField] private MiniGamePerformController _miniGamePerformController;
     [SerializeField] private Button _welcomeReactionButton;
     [SerializeField] private GameObject _miniGameRoot;
     #region MiniGame_phase
@@ -110,6 +111,8 @@ public class ShoppingPresenter : GamePhaseWindowBase
         _miniGamePhaseCts?.Cancel();
         _miniGamePhaseCts?.Dispose();
         _miniGamePhaseCts = CancellationTokenSource.CreateLinkedTokenSource(this.GetCancellationTokenOnDestroy());
+
+        await _miniGamePerformController.PerformMiniGame(_currentGameController.ThisMiniGameType);
 
         // OnGameLoaded で出したアイドル台詞を読ませてから開始する
         // (待機中にデバッグ操作で終了された場合はキャンセルされるので、そのまま抜ける)
