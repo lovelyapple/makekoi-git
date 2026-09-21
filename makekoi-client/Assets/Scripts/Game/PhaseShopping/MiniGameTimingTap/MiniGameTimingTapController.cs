@@ -18,6 +18,7 @@ public class MiniGameTimingTapController : MiniGameBase
     [SerializeField] private float _speedIncreasePerCorrectTap = 0.3f;
     [SerializeField] private float _maxCursorMoveSpeed = 2f;
     [SerializeField] private int _maxCorrectTapCount = 5;
+    [SerializeField] private float _failurePenaltyDuration = 1f; // 交渉を断られた後、次にタップできるまでの時間
 
     [Header("StaffReaction")]
     [SerializeField] private float _reactionMinInterval = 0.8f; // リアクションのちらつき防止
@@ -29,6 +30,7 @@ public class MiniGameTimingTapController : MiniGameBase
     private bool _hasTapped;
     private int _correctTapCount;
     private bool _isFinishing;
+    private bool _isPenalty;
     private float _lastReactionTime;
 
     public override MiniGameType ThisMiniGameType => MiniGameType.TimeTap;
@@ -47,6 +49,7 @@ public class MiniGameTimingTapController : MiniGameBase
         _hasTapped = false;
         _correctTapCount = 0;
         _isFinishing = false;
+        _isPenalty = false;
         _currentPartGrade = PartGrade.Budget;
         gameObject.SetActive(true);
         _cts?.Cancel();
@@ -69,6 +72,7 @@ public class MiniGameTimingTapController : MiniGameBase
         _hasTapped = false;
         _correctTapCount = 0;
         _isFinishing = false;
+        _isPenalty = false;
         _clickButton.interactable = true;
         _progressSlider.normalizedValue = 0f;
         _progressSlider.transform.localScale = Vector3.one;
@@ -89,7 +93,7 @@ public class MiniGameTimingTapController : MiniGameBase
 
     private void OnButtonClicked()
     {
-        if (_hasTapped || _isFinishing) return;
+        if (_hasTapped || _isFinishing || _isPenalty) return;
 
         var cursorValue = _progressSlider.normalizedValue;
         var distanceFromRange = cursorValue < _rangeLeft
@@ -118,8 +122,26 @@ public class MiniGameTimingTapController : MiniGameBase
         }
         else
         {
-            // 範囲外 = 値引きを断られる
+            // 範囲外 = 値引きを断られる。しばらくタップできなくなる
             EmitStaffReaction(StaffReactionCode.TimeTap_Failure);
+            ApplyFailurePenaltyAsync(_cts.Token).Forget();
+        }
+    }
+
+    private async UniTaskVoid ApplyFailurePenaltyAsync(CancellationToken ct)
+    {
+        _isPenalty = true;
+        _clickButton.interactable = false;
+
+        var isCanceled = await UniTask
+            .Delay(System.TimeSpan.FromSeconds(_failurePenaltyDuration), cancellationToken: ct)
+            .SuppressCancellationThrow();
+        if (isCanceled) return;
+
+        _isPenalty = false;
+        if (!_isFinishing && !_hasTapped)
+        {
+            _clickButton.interactable = true;
         }
     }
 
