@@ -27,6 +27,11 @@ public class GamePhaseWindowBase : MonoBehaviour
         var nextPhase = GetNextPhaseContentType(ThisPhaseContentType);
         _onGotoNextPhaseSubject.OnNext(nextPhase);
     }
+    /// <summary>順路を飛ばして任意のフェーズへ戻す。買い物失敗でタイトルへ戻すときなど。</summary>
+    public void RequestGoToPhase(GamePhaseContentType phase)
+    {
+        _onGotoNextPhaseSubject.OnNext(phase);
+    }
     public virtual void OnEnter()
     { }
 }

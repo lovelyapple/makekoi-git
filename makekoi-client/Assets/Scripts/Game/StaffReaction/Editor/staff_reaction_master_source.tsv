@@ -26,3 +26,6 @@ TimeTap_Success	3	2D/Texture/StaffReaction/chara_reaction_00	仕方ありませ�
 TimeTap_Failure	1	2D/Texture/StaffReaction/chara_reaction_00	お断りします。¥nその値段では、お売りできません。
 TimeTap_Failure	2	2D/Texture/StaffReaction/chara_reaction_00	無理を仰いますね。¥n……値引きはいたしません。
 TimeTap_Failure	3	2D/Texture/StaffReaction/chara_reaction_00	だめです。¥nうちは、そういう商売はしておりませんので。
+MiniGame_Failed	1	2D/Texture/StaffReaction/chara_reaction_00	あら。¥nお財布の中身、足りていませんよ。
+MiniGame_Failed	2	2D/Texture/StaffReaction/chara_reaction_00	掛け売りはしておりません。¥n……本日はここまでですね。
+MiniGame_Failed	3	2D/Texture/StaffReaction/chara_reaction_00	払えないものは、¥nお売りできません。お帰りはあちらです。

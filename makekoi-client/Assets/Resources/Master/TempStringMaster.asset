@@ -57,3 +57,5 @@ MonoBehaviour:
     Txt: "\u6B21\u306F"
   - Title: MINI_GAME_RESULT_BUTTON_NEXT
     Txt: "\u6B21\u3078"
+  - Title: MINI_GAME_FAILED_NO_MONEY
+    Txt: "\u304A\u91D1\u304C\u8DB3\u308A\u307E\u305B\u3093\u3002"

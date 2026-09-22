@@ -61,6 +61,12 @@ public class ShoppingModel : SingletonBase<ShoppingModel>
     public Observable<MiniGameRequestData> StartMiniGameObservable() => _startMiniGameSubject.AsObservable();
     private Subject<Unit> _shoppingFinished = new Subject<Unit>();
     public Observable<Unit> ShoppingFinishedObservable() => _shoppingFinished.AsObservable();
+    public override void OnReset()
+    {
+        _results.Clear();
+        _offeredParts.Clear();
+        _currentPartIndex = 0;
+    }
     public void Init(GenderType gender)
     {
         _currentGender = gender;

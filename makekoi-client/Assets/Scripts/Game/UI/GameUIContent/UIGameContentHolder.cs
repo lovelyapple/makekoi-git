@@ -20,11 +20,6 @@ public class UIGameContentHolder : MonoBehaviour
             rt.SetParent(transform, false);     // UIではこれが重要（worldPositionStays=false）
             rt.anchoredPosition = Vector2.zero; // localPositionではなくanchoredPosition
             rt.localScale = Vector3.one;
-
-            if (_contentInstance is TitlePresenter titlePresenter)
-            {
-                titlePresenter.OnEnter();
-            }
         }
         else
         {

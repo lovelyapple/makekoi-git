@@ -17,6 +17,8 @@ public enum StaffReactionCode
     TimeTap_Request,
     TimeTap_Success,
     TimeTap_Failure,
+    // 所持金が尽きて買い物を続けられなくなったとき
+    MiniGame_Failed,
 }
 
 [System.Serializable]

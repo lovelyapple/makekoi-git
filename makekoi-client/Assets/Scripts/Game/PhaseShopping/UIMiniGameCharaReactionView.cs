@@ -26,7 +26,8 @@ public class UIMiniGameCharaReactionView : MonoBehaviour
         CancelAutoClose();
     }
 
-    public void UpdateCharacterReaction(StaffReactionCode reactionCode)
+    /// <param name="autoClose">false を渡すと、閉じるまで出したままにする。</param>
+    public void UpdateCharacterReaction(StaffReactionCode reactionCode, bool autoClose = true)
     {
         var record = StaffReactionTableContainer.GetRandomRecord(reactionCode);
         if (record == null)
@@ -39,6 +40,12 @@ public class UIMiniGameCharaReactionView : MonoBehaviour
 
         MessageBox.SetActive(true);
         _reactionMessageText.text = record.Message;
+
+        if (!autoClose)
+        {
+            CancelAutoClose();
+            return;
+        }
 
         // 続けて別の台詞が来たら、そこから数え直す
         RestartAutoClose();

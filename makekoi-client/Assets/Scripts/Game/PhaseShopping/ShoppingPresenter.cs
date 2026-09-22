@@ -16,6 +16,7 @@ public class ShoppingPresenter : GamePhaseWindowBase
     [SerializeField] private MiniGamePerformController _miniGamePerformController;
     [SerializeField] private Button _welcomeReactionButton;
     [SerializeField] private GameObject _miniGameRoot;
+    [SerializeField] private ShoppingFailedView _shoppingFailedView;
     #region MiniGame_phase
     private const float DogezaPhaseDuration = 5f;
     private const float TimingTapPhaseDuration = 10f;
@@ -45,15 +46,25 @@ public class ShoppingPresenter : GamePhaseWindowBase
                 .AddTo(this);
         }
 
+        // 全部位を買い終わったらリザルトへ送る
+        ShoppingModel.Instance.ShoppingFinishedObservable()
+            .Subscribe(_ => RequestGoToNextPhase())
+            .AddTo(this);
+
         DebugModel.Instance.OnFinishCurrentMiniGameRequested()
             .Where(_ => _currentGameController != null)
             .Subscribe(_ => OnMiniGamePhaseFinished())
             .AddTo(this);
     }
+    public override GamePhaseContentType ThisPhaseContentType => GamePhaseContentType.Shopping;
     public override void OnEnter()
     {
         _miniGameRoot.SetActive(false);
         _miniGameResultView.Close();
+        _shoppingFailedView.gameObject.SetActive(false);
+
+        // 品揃えはキャラ確定時に CharacterSelectPresenter で抽選済み
+        // (Dev シーンでは DevPhaseSceneBootstrap が肩代わりしている)
 
         _miniGameStartPerformanceCts = CancellationTokenSource.CreateLinkedTokenSource(this.GetCancellationTokenOnDestroy());
         PerformWelcomeReactionAsync().Forget();
@@ -189,7 +200,28 @@ public class ShoppingPresenter : GamePhaseWindowBase
 
         await RunMiniGamePahseReusltConfirmAsync(result);
 
+        // 払った結果マイナスになったら、そこで買い物は打ち切り
+        if (GameModel.Instance.SessionData.Money < 0)
+        {
+            await PerformShoppingFailedAsync();
+            return Unit.Default;
+        }
+
         ShoppingModel.Instance.OnMiniGameFinished(result);
+        return Unit.Default;
+    }
+    private async UniTask<Unit> PerformShoppingFailedAsync()
+    {
+        // mini_game_failed は _miniGameRoot の子なので、root は出したままにする
+        // 失敗パネルを読んでいる間に消えないよう、自動で閉じない
+        _charaReactionView.UpdateCharacterReaction(StaffReactionCode.MiniGame_Failed, autoClose: false);
+        _shoppingFailedView.gameObject.SetActive(true);
+
+        await _shoppingFailedView.OnBackToTopClicked();
+
+        _shoppingFailedView.gameObject.SetActive(false);
+        _charaReactionView.CloseReactionMsgBox();
+        RequestGoToPhase(GamePhaseContentType.Title);
         return Unit.Default;
     }
     private async UniTask<Unit> RunPhaseTimeLeftAsync(CancellationToken ct)

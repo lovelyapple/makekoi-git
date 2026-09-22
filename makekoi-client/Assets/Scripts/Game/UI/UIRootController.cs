@@ -16,6 +16,7 @@ public class UIRootController : MonoBehaviour
         {
             var holder = go.GetComponent<UIGameContentHolder>();
             _footerController.OnTypeSelected(holder.ButtonType);
+            EnterContent(holder);
         });
 
         InitAsync().Forget();
@@ -30,7 +31,19 @@ public class UIRootController : MonoBehaviour
             .Subscribe(nextPhase => _contentScrollView.GoToIndex((int)nextPhase))
             .AddTo(this);
         }
+
+        // 起動直後のページ通知は Content の生成前に飛んでいるので、ここで入り直す
+        EnterContent(FindHolder(_contentScrollView.CurrentIndex));
         return Unit.Default;
     }
 
+    private UIGameContentHolder FindHolder(int pageIndex) =>
+        _contentHolders.Find(holder => (int)holder.ButtonType == pageIndex);
+
+    // ページが表示されたタイミングで、その Phase の初期化を走らせる
+    private static void EnterContent(UIGameContentHolder holder)
+    {
+        if (holder == null || !holder.IsContentLoaded) return;
+        holder.Content.OnEnter();
+    }
 }

@@ -30,6 +30,9 @@ public class CharacterSelectPresenter : GamePhaseWindowBase
             .Subscribe(genderType =>
             {
                 GameModel.Instance.UpdateGenderType(genderType);
+                // キャラが決まった時点で、この先の買い物で並ぶ品をここで抽選しておく
+                ShoppingModel.Instance.Init(genderType);
+                ShoppingModel.Instance.StartShopping();
                 _characterSelectView.GoToIndex((int)CharacterSelectPhase.PartnerWish);
             }).AddTo(this);
 
