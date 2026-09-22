@@ -34,6 +34,8 @@ public sealed class MiniGameResultData
     public readonly int CostMoney;
     /// <summary>交渉前の定価。</summary>
     public readonly int BasePrice;
+    /// <summary>獲得スコア。</summary>
+    public readonly int Score;
     /// <summary>値引きできた額。</summary>
     public long DiscountAmount => BasePrice - CostMoney;
     public MiniGameResultData(PartType partType, PartnerPartData resultPart, long costTime, int costMoney, int basePrice)
@@ -48,6 +50,8 @@ public sealed class MiniGameResultData
 public class ShoppingModel : SingletonBase<ShoppingModel>
 {
     private Dictionary<PartType, MiniGameResultData> _results = new Dictionary<PartType, MiniGameResultData>();
+    /// <summary>部位ごとのミニゲーム結果。未実施の部位は null。</summary>
+    public IReadOnlyDictionary<PartType, MiniGameResultData> Results => _results;
     // 買い物開始時に部位ごとに抽選した「その日の品揃え」
     private Dictionary<PartType, PartnerPartData> _offeredParts = new Dictionary<PartType, PartnerPartData>();
     public IReadOnlyDictionary<PartType, PartnerPartData> OfferedParts => _offeredParts;
@@ -113,6 +117,27 @@ public class ShoppingModel : SingletonBase<ShoppingModel>
             StartMiniGame();
         }
     }
+#if UNITY_EDITOR
+    /// <summary>リザルト演出の確認用に、品揃えの抽選と結果をまとめて仮作成する。</summary>
+    public void SetupDebugResults(GenderType gender)
+    {
+        Init(gender);
+        StartShopping();
+
+        foreach (PartType partType in System.Enum.GetValues(typeof(PartType)))
+        {
+            var part = _offeredParts[partType];
+            var basePrice = part.Price;
+            // 値引き交渉の結果を適当にばらけさせる
+            var costMoney = Mathf.RoundToInt(basePrice * Random.Range(0.5f, 1f));
+            _results[partType] = new MiniGameResultData(partType, part, Random.Range(1, 6), costMoney, basePrice);
+            // 本来は買い物中に支払っているので、残り所持金にも反映しておく
+            GameModel.Instance.OnMoneyPaid(costMoney);
+        }
+
+        _currentPartIndex = System.Enum.GetValues(typeof(PartType)).Length;
+    }
+#endif
     public void OnShoppingFinished()
     {
         // All parts finished

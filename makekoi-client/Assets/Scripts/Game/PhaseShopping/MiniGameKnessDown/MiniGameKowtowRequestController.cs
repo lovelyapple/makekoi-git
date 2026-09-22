@@ -56,8 +56,8 @@ public class MiniGameKowtowRequestController : MiniGameBase
     {
         OnGameLoaded(new MiniGameRequestData(
             MiniGameType.Dogeza,
-            PartType.Accessory,
-            new PartnerPartData(PartType.Accessory, PartGrade.Budget, GenderType.Female)));
+            PartType.Inner,
+            new PartnerPartData(PartType.Inner, PartGrade.Budget, GenderType.Female)));
     }
     public override void OnGameLoaded(MiniGameRequestData requestData)
     {

@@ -24,6 +24,6 @@ public class UIPartnerClothListCell : MonoBehaviour
         {
             _partNameText.text = partData.PartMasterRecord != null ? partData.PartMasterRecord.Name : string.Empty;
         }
-        _importantMarkObj.SetActive(false);
+        _importantMarkObj.SetActive(partData.Grade == PartGrade.Premium);
     }
 }

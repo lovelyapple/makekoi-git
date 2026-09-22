@@ -2060,6 +2060,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UIPartnerClothListCell
   _genderType: 0
   _importantMarkObj: {fileID: 2958556184228750027}
+  _partIconImage: {fileID: 0}
+  _partNameText: {fileID: 0}
 --- !u!1 &2058503276809115330
 GameObject:
   m_ObjectHideFlags: 0
@@ -2787,6 +2789,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UIPartnerClothListCell
   _genderType: 0
   _importantMarkObj: {fileID: 2176824885319974371}
+  _partIconImage: {fileID: 0}
+  _partNameText: {fileID: 0}
 --- !u!1 &2607354882577557151
 GameObject:
   m_ObjectHideFlags: 0
@@ -3580,6 +3584,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UIPartnerClothListCell
   _genderType: 0
   _importantMarkObj: {fileID: 4517919517840672097}
+  _partIconImage: {fileID: 0}
+  _partNameText: {fileID: 0}
 --- !u!1 &3712790417671808877
 GameObject:
   m_ObjectHideFlags: 0
@@ -5019,6 +5025,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UIPartnerClothListCell
   _genderType: 0
   _importantMarkObj: {fileID: 8966243965600843948}
+  _partIconImage: {fileID: 0}
+  _partNameText: {fileID: 0}
 --- !u!1 &5257011468778862997
 GameObject:
   m_ObjectHideFlags: 0
@@ -5073,6 +5081,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UIPartnerClothListCell
   _genderType: 0
   _importantMarkObj: {fileID: 2658154725481719233}
+  _partIconImage: {fileID: 0}
+  _partNameText: {fileID: 0}
 --- !u!1 &5300898938063782048
 GameObject:
   m_ObjectHideFlags: 0
@@ -6770,6 +6780,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UIPartnerClothListCell
   _genderType: 0
   _importantMarkObj: {fileID: 299542113143679172}
+  _partIconImage: {fileID: 0}
+  _partNameText: {fileID: 0}
 --- !u!1 &6944457938341549344
 GameObject:
   m_ObjectHideFlags: 0

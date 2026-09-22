@@ -65,5 +65,12 @@ public class DevPhaseSceneBootstrap : MonoBehaviour
             ShoppingModel.Instance.Init(_gender);
             ShoppingModel.Instance.StartShopping();
         }
+#if UNITY_EDITOR
+        else if (_targetHolder.ButtonType == GamePhaseContentType.Result)
+        {
+            // 買い物フェーズを通っていないので、リザルトに出す結果を仮作成する
+            ShoppingModel.Instance.SetupDebugResults(_gender);
+        }
+#endif
     }
 }

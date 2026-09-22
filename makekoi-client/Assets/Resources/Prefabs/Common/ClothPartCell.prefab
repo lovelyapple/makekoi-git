@@ -265,7 +265,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIPartnerClothListCell
   _genderType: 0
-  _importantMarkObj: {fileID: 1965741946006643752}
+  _importantMarkObj: {fileID: 8278411563718737720}
   _partIconImage: {fileID: 6886249241001689927}
   _partNameText: {fileID: 7108355478610240826}
 --- !u!1 &8278411563718737720
