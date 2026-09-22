@@ -59,6 +59,7 @@ public class MiniGameTimingTapController : MiniGameBase
         _isPenalty = false;
         _currentPartGrade = PartGrade.Budget;
         gameObject.SetActive(true);
+        ResetCostMoneyRoller();
         SetBarFillAmount(0);
         _cts?.Cancel();
         _cts?.Dispose();
@@ -94,6 +95,7 @@ public class MiniGameTimingTapController : MiniGameBase
     {
         // 成功回数がそのまま交渉の成果になる
         CurrentMiniGameResult = CreateResult((float)_correctTapCount / Mathf.Max(1, _maxCorrectTapCount));
+        UpdateCostMoneyRoller((float)_correctTapCount / Mathf.Max(1, _maxCorrectTapCount), force: true);
 
         StopGame();
     }
@@ -237,6 +239,7 @@ public class MiniGameTimingTapController : MiniGameBase
         var maxCorrectTapCount = Mathf.Max(1, _maxCorrectTapCount);
         var clampedCorrectTapCount = Mathf.Clamp(correctTapCount, 0, maxCorrectTapCount);
         _barImage.fillAmount = (float)clampedCorrectTapCount / maxCorrectTapCount;
+        UpdateCostMoneyRoller(_barImage.fillAmount);
     }
 
     private void StopGame()

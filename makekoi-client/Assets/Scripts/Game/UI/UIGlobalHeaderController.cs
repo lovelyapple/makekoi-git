@@ -11,12 +11,12 @@ public class UIGlobalHeaderController : MonoBehaviour
     {
         UpdatePlayerMoneyUI(_currentPlayerMoney);
         GameModel.Instance.OnSessionDataChangedObservable()
-            .Where(sessionData => sessionData.PlayerMoney != _currentPlayerMoney)
+            .Where(sessionData => sessionData.Money != _currentPlayerMoney)
             .Subscribe(sessionData =>
             {
-                if (_currentPlayerMoney != sessionData.PlayerMoney)
+                if (_currentPlayerMoney != sessionData.Money)
                 {
-                    _currentPlayerMoney = sessionData.PlayerMoney;
+                    _currentPlayerMoney = sessionData.Money;
                     UpdatePlayerMoneyUI(_currentPlayerMoney);
                 }
             }).AddTo(this);

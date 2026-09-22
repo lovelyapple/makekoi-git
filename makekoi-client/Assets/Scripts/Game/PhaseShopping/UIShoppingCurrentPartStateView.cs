@@ -1,5 +1,6 @@
 using Cysharp.Threading.Tasks;
 using Makekoi.PartnerCreate;
+using R3;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,6 +9,7 @@ public class UIShoppingCurrentPartStateView : MonoBehaviour
 {
     [SerializeField] private UIPartnerClothListCell _partnerClothListCell;
     [SerializeField] private UIPartnerClothListCell _nextPartnerClothListCell;
+    [SerializeField] private UINumberRollerGroup _costMoneyRollerGroup;
     [SerializeField] private Image _timeLeftFillImage;
     [SerializeField] private Image _timeLeftFillBgImage;
 
@@ -24,11 +26,18 @@ public class UIShoppingCurrentPartStateView : MonoBehaviour
     {
         _partnerClothListCell.UpdateCell(partData);
         _nextPartnerClothListCell.gameObject.SetActive(false);
+        _costMoneyRollerGroup.gameObject.SetActive(false);
     }
     public void UpdateNextPartData(PartnerPartData partData)
     {
         _nextPartnerClothListCell.UpdateCell(partData);
         _nextPartnerClothListCell.gameObject.SetActive(true);
+    }
+    public async UniTask<Unit> UpdateCostMoneyRollerAsync(PartnerPartData partData)
+    {
+        _costMoneyRollerGroup.gameObject.SetActive(true);
+        await _costMoneyRollerGroup.RollToAsync(partData.Price, this.GetCancellationTokenOnDestroy());
+        return Unit.Default;
     }
     public void UpdateFillAmount(float fillAmount)
     {

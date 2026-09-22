@@ -12,8 +12,11 @@ public class UIMiniGameResultView : MonoBehaviour
     [SerializeField] private RectTransform _popupTransform;
     [SerializeField] private Image _partImage;
     [SerializeField] private TextMeshProUGUI _partNameText;
-    [SerializeField] private TextMeshProUGUI _gradeText;
-    [SerializeField] private TextMeshProUGUI _costText;
+
+
+    [SerializeField] private UINumberRollerGroup _priceRoller;
+    [SerializeField] private GameObject _costArrowObject;
+    [SerializeField] private UINumberRollerGroup _paidRoller;
     [SerializeField] private Button _confirmButton;
 
     private const float PopupDuration = 0.25f;
@@ -27,6 +30,12 @@ public class UIMiniGameResultView : MonoBehaviour
     // (Awake で閉じると、初回 SetActive(true) のタイミングで Awake が走って閉じてしまうため)
     public void Close()
     {
+        _costArrowObject.SetActive(false);
+        _priceRoller.SetValueImmediate(0);
+        _paidRoller.SetValueImmediate(0);
+
+        _priceRoller.gameObject.SetActive(false);
+        _paidRoller.gameObject.SetActive(false);
         gameObject.SetActive(false);
     }
 
@@ -38,6 +47,19 @@ public class UIMiniGameResultView : MonoBehaviour
         gameObject.SetActive(true);
         _confirmButton.interactable = false;
         await PlayPopupAsync(ct);
+
+        await UniTask.Delay(System.TimeSpan.FromSeconds(1), cancellationToken: ct);
+
+        _priceRoller.gameObject.SetActive(true);
+        await _priceRoller.RollToAsync((int)result.BasePrice, ct);
+
+        await UniTask.Delay(System.TimeSpan.FromSeconds(1), cancellationToken: ct);
+        _costArrowObject.SetActive(true);
+        await UniTask.Delay(System.TimeSpan.FromSeconds(1), cancellationToken: ct);
+
+
+        _paidRoller.gameObject.SetActive(true);
+        await _paidRoller.RollToAsync((int)result.CostMoney, ct);
 
         _confirmButton.interactable = true;
         await _confirmButton.OnClickAsObservable().FirstAsync(cancellationToken: ct);
@@ -61,18 +83,6 @@ public class UIMiniGameResultView : MonoBehaviour
         if (_partNameText != null)
         {
             _partNameText.text = partData.PartMasterRecord != null ? partData.PartMasterRecord.Name : string.Empty;
-        }
-        if (_gradeText != null)
-        {
-            var gradeIndex = (int)partData.Grade;
-            _gradeText.text = gradeIndex >= 0 && gradeIndex < GradeLabels.Length ? GradeLabels[gradeIndex] : string.Empty;
-        }
-        if (_costText != null)
-        {
-            // 値切れた場合は定価も並べて見せる
-            _costText.text = result.DiscountAmount > 0
-                ? $"<s>{result.BasePrice:N0}円</s>  {result.CostMoney:N0}円"
-                : $"{result.CostMoney:N0}円";
         }
     }
 

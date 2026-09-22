@@ -66,19 +66,21 @@ public class ShoppingPresenter : GamePhaseWindowBase
         _charaReactionView.UpdateCharacterReaction(StaffReactionCode.Welcome_1);
         await UniTask.Delay(System.TimeSpan.FromSeconds(1f), cancellationToken: ct);
 
-        _welcomeReactionButton.gameObject.SetActive(true);
-        await _welcomeReactionButton.OnClickAsObservable().FirstAsync(cancellationToken: ct);
-
-        _welcomeReactionButton.gameObject.SetActive(false);
+        await OnClickNext();
         _charaReactionView.UpdateCharacterReaction(StaffReactionCode.Welcome_2);
         await UniTask.Delay(System.TimeSpan.FromSeconds(1f), cancellationToken: ct);
 
+        await OnClickNext();
+        ShoppingModel.Instance.StartMiniGame();
+        return Unit.Default;
+    }
+    private async UniTask<Unit> OnClickNext()
+    {
+        var ct = _miniGameStartPerformanceCts.Token;
         _welcomeReactionButton.gameObject.SetActive(true);
         await _welcomeReactionButton.OnClickAsObservable().FirstAsync(cancellationToken: ct);
 
-        // 歓迎演出はここで終わり。ミニゲーム中に残らないよう閉じる
         _welcomeReactionButton.gameObject.SetActive(false);
-        ShoppingModel.Instance.StartMiniGame();
         return Unit.Default;
     }
     private void OnStartMiniGameRequested(MiniGameRequestData requestData)
@@ -99,10 +101,13 @@ public class ShoppingPresenter : GamePhaseWindowBase
         if (nextTargetPart != null)
         {
             _currentPartStateView.UpdateNextPartData(nextTargetPart);
+            await _currentPartStateView.UpdateCostMoneyRollerAsync(nextTargetPart);
         }
 
         await UniTask.Delay(System.TimeSpan.FromSeconds(1),
              cancellationToken: this.GetCancellationTokenOnDestroy());
+
+        await OnClickNext();
 
         if (nextTargetPart != null)
         {
@@ -226,6 +231,9 @@ public class ShoppingPresenter : GamePhaseWindowBase
     {
         _charaReactionView.UpdateCharacterReaction(GetResultReactionCode(result.ResultPart.Grade));
         await _miniGameResultView.ShowAndWaitConfirmAsync(result, this.GetCancellationTokenOnDestroy());
+
+        GameModel.Instance.OnMoneyPaid(result.CostMoney);
+
         _charaReactionView.CloseReactionMsgBox();
         return Unit.Default;
     }

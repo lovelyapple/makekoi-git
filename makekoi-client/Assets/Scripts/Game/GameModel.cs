@@ -15,5 +15,9 @@ public class GameModel : SingletonBase<GameModel>
         SessionData.SelectedGender = genderType;
         _sessionDataSubject.OnNext(SessionData);
     }
-
+    public void OnMoneyPaid(int amount)
+    {
+        SessionData.Money -= amount;
+        _sessionDataSubject.OnNext(SessionData);
+    }
 }

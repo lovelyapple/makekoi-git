@@ -67,6 +67,7 @@ public class MiniGameJyankenController : MiniGameBase
         _cts = new CancellationTokenSource();
         SetAllButtonsPosition(_pointCenter);
         SetButtonsInteractable(false);
+        ResetCostMoneyRoller();
         SetBarValue(_barValue);
         HideReferences();
     }
@@ -85,6 +86,7 @@ public class MiniGameJyankenController : MiniGameBase
 
         // 勝ち越した分がそのまま交渉の成果になる
         CurrentMiniGameResult = CreateResult((float)_barValue / MaxBarValue);
+        UpdateCostMoneyRoller((float)_barValue / MaxBarValue, force: true);
 
         StopGame();
     }
@@ -185,6 +187,7 @@ public class MiniGameJyankenController : MiniGameBase
     {
         _barValue = Mathf.Clamp(value, 0, MaxBarValue);
         _barImage.fillAmount = (float)_barValue / MaxBarValue;
+        UpdateCostMoneyRoller(_barImage.fillAmount);
     }
 
     private static int Judge(Hand playerHand, Hand referenceHand)

@@ -66,6 +66,7 @@ public class MiniGameKowtowRequestController : MiniGameBase
         _cts?.Cancel();
         _cts?.Dispose();
         _cts = new CancellationTokenSource();
+        ResetCostMoneyRoller();
     }
     public override void OnGameUnloaded()
     {
@@ -91,6 +92,7 @@ public class MiniGameKowtowRequestController : MiniGameBase
     {
         // 頭を下げ続けて溜めたバーがそのまま交渉の成果になる
         CurrentMiniGameResult = CreateResult(_barImage.fillAmount);
+        UpdateCostMoneyRoller(_barImage.fillAmount, force: true);
 
         _cts?.Cancel();
         _cts?.Dispose();
@@ -158,6 +160,7 @@ public class MiniGameKowtowRequestController : MiniGameBase
     {
         var clampedFillAmount = Mathf.Clamp01(fillAmount);
         _barImage.fillAmount = clampedFillAmount;
+        UpdateCostMoneyRoller(clampedFillAmount);
         var nextGrade = clampedFillAmount >= PremiumGradeFillThreshold
             ? PartGrade.Premium
             : clampedFillAmount >= MidGradeFillThreshold

@@ -31,12 +31,12 @@ public sealed class MiniGameResultData
     public readonly PartnerPartData ResultPart;
     public readonly long CostTime;
     /// <summary>交渉後に実際に支払う金額。</summary>
-    public readonly long CostMoney;
+    public readonly int CostMoney;
     /// <summary>交渉前の定価。</summary>
-    public readonly long BasePrice;
+    public readonly int BasePrice;
     /// <summary>値引きできた額。</summary>
     public long DiscountAmount => BasePrice - CostMoney;
-    public MiniGameResultData(PartType partType, PartnerPartData resultPart, long costTime, long costMoney, long basePrice)
+    public MiniGameResultData(PartType partType, PartnerPartData resultPart, long costTime, int costMoney, int basePrice)
     {
         PartType = partType;
         ResultPart = resultPart;

@@ -18,151 +18,151 @@ MonoBehaviour:
     Grade: 0
     Name: "\u30C8\u30C3\u30D7\u30B9\uFF08\u9AD8\u7D1A\u30FB\u5973\u6027\uFF09"
     TexturePath: 2D/Texture/ClothParts/Top_Female_Premium
-    Price: 8000
+    Price: 18000
   - PartType: 0
     Gender: 0
     Grade: 1
     Name: "\u30C8\u30C3\u30D7\u30B9\uFF08\u4E2D\u7D1A\u30FB\u5973\u6027\uFF09"
     TexturePath: 2D/Texture/ClothParts/Top_Female_Mid
-    Price: 4000
+    Price: 5900
   - PartType: 0
     Gender: 0
     Grade: 2
     Name: "\u30C8\u30C3\u30D7\u30B9\uFF08\u4E0B\u7D1A\u30FB\u5973\u6027\uFF09"
     TexturePath: 2D/Texture/ClothParts/Top_Female_Budget
-    Price: 2000
+    Price: 1900
   - PartType: 0
     Gender: 1
     Grade: 0
     Name: "\u30C8\u30C3\u30D7\u30B9\uFF08\u9AD8\u7D1A\u30FB\u7537\u6027\uFF09"
     TexturePath: 2D/Texture/ClothParts/Top_Male_Premium
-    Price: 8000
+    Price: 18000
   - PartType: 0
     Gender: 1
     Grade: 1
     Name: "\u30C8\u30C3\u30D7\u30B9\uFF08\u4E2D\u7D1A\u30FB\u7537\u6027\uFF09"
     TexturePath: 2D/Texture/ClothParts/Top_Male_Mid
-    Price: 4000
+    Price: 5900
   - PartType: 0
     Gender: 1
     Grade: 2
     Name: "\u30C8\u30C3\u30D7\u30B9\uFF08\u4E0B\u7D1A\u30FB\u7537\u6027\uFF09"
     TexturePath: 2D/Texture/ClothParts/Top_Male_Budget
-    Price: 2000
+    Price: 1900
   - PartType: 1
     Gender: 0
     Grade: 0
     Name: "\u30A4\u30F3\u30CA\u30FC\uFF08\u9AD8\u7D1A\u30FB\u5973\u6027\uFF09"
     TexturePath: 2D/Texture/ClothParts/Inner_Female_Premium
-    Price: 8000
+    Price: 6000
   - PartType: 1
     Gender: 0
     Grade: 1
     Name: "\u30A4\u30F3\u30CA\u30FC\uFF08\u4E2D\u7D1A\u30FB\u5973\u6027\uFF09"
     TexturePath: 2D/Texture/ClothParts/Inner_Female_Mid
-    Price: 4000
+    Price: 2000
   - PartType: 1
     Gender: 0
     Grade: 2
     Name: "\u30A4\u30F3\u30CA\u30FC\uFF08\u4E0B\u7D1A\u30FB\u5973\u6027\uFF09"
     TexturePath: 2D/Texture/ClothParts/Inner_Female_Budget
-    Price: 2000
+    Price: 700
   - PartType: 1
     Gender: 1
     Grade: 0
     Name: "\u30A4\u30F3\u30CA\u30FC\uFF08\u9AD8\u7D1A\u30FB\u7537\u6027\uFF09"
     TexturePath: 2D/Texture/ClothParts/Inner_Male_Premium
-    Price: 8000
+    Price: 6000
   - PartType: 1
     Gender: 1
     Grade: 1
     Name: "\u30A4\u30F3\u30CA\u30FC\uFF08\u4E2D\u7D1A\u30FB\u7537\u6027\uFF09"
     TexturePath: 2D/Texture/ClothParts/Inner_Male_Mid
-    Price: 4000
+    Price: 2000
   - PartType: 1
     Gender: 1
     Grade: 2
     Name: "\u30A4\u30F3\u30CA\u30FC\uFF08\u4E0B\u7D1A\u30FB\u7537\u6027\uFF09"
     TexturePath: 2D/Texture/ClothParts/Inner_Male_Budget
-    Price: 2000
+    Price: 700
   - PartType: 2
     Gender: 0
     Grade: 0
     Name: "\u30DC\u30C8\u30E0\u30B9\uFF08\u9AD8\u7D1A\u30FB\u5973\u6027\uFF09"
     TexturePath: 2D/Texture/ClothParts/Bottom_Female_Premium
-    Price: 8000
+    Price: 24000
   - PartType: 2
     Gender: 0
     Grade: 1
     Name: "\u30DC\u30C8\u30E0\u30B9\uFF08\u4E2D\u7D1A\u30FB\u5973\u6027\uFF09"
     TexturePath: 2D/Texture/ClothParts/Bottom_Female_Mid
-    Price: 4000
+    Price: 7900
   - PartType: 2
     Gender: 0
     Grade: 2
     Name: "\u30DC\u30C8\u30E0\u30B9\uFF08\u4E0B\u7D1A\u30FB\u5973\u6027\uFF09"
     TexturePath: 2D/Texture/ClothParts/Bottom_Female_Budget
-    Price: 2000
+    Price: 2500
   - PartType: 2
     Gender: 1
     Grade: 0
     Name: "\u30DC\u30C8\u30E0\u30B9\uFF08\u9AD8\u7D1A\u30FB\u7537\u6027\uFF09"
     TexturePath: 2D/Texture/ClothParts/Bottom_Male_Premium
-    Price: 8000
+    Price: 24000
   - PartType: 2
     Gender: 1
     Grade: 1
     Name: "\u30DC\u30C8\u30E0\u30B9\uFF08\u4E2D\u7D1A\u30FB\u7537\u6027\uFF09"
     TexturePath: 2D/Texture/ClothParts/Bottom_Male_Mid
-    Price: 4000
+    Price: 7900
   - PartType: 2
     Gender: 1
     Grade: 2
     Name: "\u30DC\u30C8\u30E0\u30B9\uFF08\u4E0B\u7D1A\u30FB\u7537\u6027\uFF09"
     TexturePath: 2D/Texture/ClothParts/Bottom_Male_Budget
-    Price: 2000
+    Price: 2500
   - PartType: 3
     Gender: 0
     Grade: 0
     Name: "\u30B7\u30E5\u30FC\u30BA\uFF08\u9AD8\u7D1A\u30FB\u5973\u6027\uFF09"
     TexturePath: 2D/Texture/ClothParts/Shoes_Female_Premium
-    Price: 8000
+    Price: 30000
   - PartType: 3
     Gender: 0
     Grade: 1
     Name: "\u30B7\u30E5\u30FC\u30BA\uFF08\u4E2D\u7D1A\u30FB\u5973\u6027\uFF09"
     TexturePath: 2D/Texture/ClothParts/Shoes_Female_Mid
-    Price: 4000
+    Price: 9800
   - PartType: 3
     Gender: 0
     Grade: 2
     Name: "\u30B7\u30E5\u30FC\u30BA\uFF08\u4E0B\u7D1A\u30FB\u5973\u6027\uFF09"
     TexturePath: 2D/Texture/ClothParts/Shoes_Female_Budget
-    Price: 2000
+    Price: 2900
   - PartType: 3
     Gender: 1
     Grade: 0
     Name: "\u30B7\u30E5\u30FC\u30BA\uFF08\u9AD8\u7D1A\u30FB\u7537\u6027\uFF09"
     TexturePath: 2D/Texture/ClothParts/Shoes_Male_Premium
-    Price: 8000
+    Price: 30000
   - PartType: 3
     Gender: 1
     Grade: 1
     Name: "\u30B7\u30E5\u30FC\u30BA\uFF08\u4E2D\u7D1A\u30FB\u7537\u6027\uFF09"
     TexturePath: 2D/Texture/ClothParts/Shoes_Male_Mid
-    Price: 4000
+    Price: 9800
   - PartType: 3
     Gender: 1
     Grade: 2
     Name: "\u30B7\u30E5\u30FC\u30BA\uFF08\u4E0B\u7D1A\u30FB\u7537\u6027\uFF09"
     TexturePath: 2D/Texture/ClothParts/Shoes_Male_Budget
-    Price: 2000
+    Price: 2900
   - PartType: 4
     Gender: 0
     Grade: 0
     Name: "\u30A2\u30AF\u30BB\u30B5\u30EA\u30FC\uFF08\u9AD8\u7D1A\u30FB\u5973\u6027\uFF09"
     TexturePath: 2D/Texture/ClothParts/Accessory_Female_Premium
-    Price: 8000
+    Price: 20000
   - PartType: 4
     Gender: 0
     Grade: 1
@@ -174,13 +174,13 @@ MonoBehaviour:
     Grade: 2
     Name: "\u30A2\u30AF\u30BB\u30B5\u30EA\u30FC\uFF08\u4E0B\u7D1A\u30FB\u5973\u6027\uFF09"
     TexturePath: 2D/Texture/ClothParts/Accessory_Female_Budget
-    Price: 2000
+    Price: 1000
   - PartType: 4
     Gender: 1
     Grade: 0
     Name: "\u30A2\u30AF\u30BB\u30B5\u30EA\u30FC\uFF08\u9AD8\u7D1A\u30FB\u7537\u6027\uFF09"
     TexturePath: 2D/Texture/ClothParts/Accessory_Male_Premium
-    Price: 8000
+    Price: 20000
   - PartType: 4
     Gender: 1
     Grade: 1
@@ -192,76 +192,76 @@ MonoBehaviour:
     Grade: 2
     Name: "\u30A2\u30AF\u30BB\u30B5\u30EA\u30FC\uFF08\u4E0B\u7D1A\u30FB\u7537\u6027\uFF09"
     TexturePath: 2D/Texture/ClothParts/Accessory_Male_Budget
-    Price: 2000
+    Price: 1000
   - PartType: 5
     Gender: 0
     Grade: 0
     Name: "\u30D0\u30C3\u30B0\uFF08\u9AD8\u7D1A\u30FB\u5973\u6027\uFF09"
     TexturePath: 2D/Texture/ClothParts/Bag_Female_Premium
-    Price: 8000
+    Price: 50000
   - PartType: 5
     Gender: 0
     Grade: 1
     Name: "\u30D0\u30C3\u30B0\uFF08\u4E2D\u7D1A\u30FB\u5973\u6027\uFF09"
     TexturePath: 2D/Texture/ClothParts/Bag_Female_Mid
-    Price: 4000
+    Price: 12000
   - PartType: 5
     Gender: 0
     Grade: 2
     Name: "\u30D0\u30C3\u30B0\uFF08\u4E0B\u7D1A\u30FB\u5973\u6027\uFF09"
     TexturePath: 2D/Texture/ClothParts/Bag_Female_Budget
-    Price: 2000
+    Price: 2900
   - PartType: 5
     Gender: 1
     Grade: 0
     Name: "\u30D0\u30C3\u30B0\uFF08\u9AD8\u7D1A\u30FB\u7537\u6027\uFF09"
     TexturePath: 2D/Texture/ClothParts/Bag_Male_Premium
-    Price: 8000
+    Price: 50000
   - PartType: 5
     Gender: 1
     Grade: 1
     Name: "\u30D0\u30C3\u30B0\uFF08\u4E2D\u7D1A\u30FB\u7537\u6027\uFF09"
     TexturePath: 2D/Texture/ClothParts/Bag_Male_Mid
-    Price: 4000
+    Price: 12000
   - PartType: 5
     Gender: 1
     Grade: 2
     Name: "\u30D0\u30C3\u30B0\uFF08\u4E0B\u7D1A\u30FB\u7537\u6027\uFF09"
     TexturePath: 2D/Texture/ClothParts/Bag_Male_Budget
-    Price: 2000
+    Price: 2900
   - PartType: 6
     Gender: 0
     Grade: 0
     Name: "\u30D8\u30A2\u30A2\u30AF\u30BB\uFF08\u9AD8\u7D1A\u30FB\u5973\u6027\uFF09"
     TexturePath: 2D/Texture/ClothParts/HairAccessory_Female_Premium
-    Price: 8000
+    Price: 5000
   - PartType: 6
     Gender: 0
     Grade: 1
     Name: "\u30D8\u30A2\u30A2\u30AF\u30BB\uFF08\u4E2D\u7D1A\u30FB\u5973\u6027\uFF09"
     TexturePath: 2D/Texture/ClothParts/HairAccessory_Female_Mid
-    Price: 4000
+    Price: 1800
   - PartType: 6
     Gender: 0
     Grade: 2
     Name: "\u30D8\u30A2\u30A2\u30AF\u30BB\uFF08\u4E0B\u7D1A\u30FB\u5973\u6027\uFF09"
     TexturePath: 2D/Texture/ClothParts/HairAccessory_Female_Budget
-    Price: 2000
+    Price: 500
   - PartType: 6
     Gender: 1
     Grade: 0
     Name: "\u30D8\u30A2\u30A2\u30AF\u30BB\uFF08\u9AD8\u7D1A\u30FB\u7537\u6027\uFF09"
     TexturePath: 2D/Texture/ClothParts/HairAccessory_Male_Premium
-    Price: 8000
+    Price: 5000
   - PartType: 6
     Gender: 1
     Grade: 1
     Name: "\u30D8\u30A2\u30A2\u30AF\u30BB\uFF08\u4E2D\u7D1A\u30FB\u7537\u6027\uFF09"
     TexturePath: 2D/Texture/ClothParts/HairAccessory_Male_Mid
-    Price: 4000
+    Price: 1800
   - PartType: 6
     Gender: 1
     Grade: 2
     Name: "\u30D8\u30A2\u30A2\u30AF\u30BB\uFF08\u4E0B\u7D1A\u30FB\u7537\u6027\uFF09"
     TexturePath: 2D/Texture/ClothParts/HairAccessory_Male_Budget
-    Price: 2000
+    Price: 500

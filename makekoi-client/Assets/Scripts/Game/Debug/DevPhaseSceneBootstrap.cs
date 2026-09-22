@@ -56,7 +56,7 @@ public class DevPhaseSceneBootstrap : MonoBehaviour
     private void SetupDummySession()
     {
         GameModel.Instance.OnReset();
-        GameModel.Instance.SessionData.PlayerMoney = _playerMoney;
+        GameModel.Instance.SessionData.Money = _playerMoney;
         GameModel.Instance.UpdateGenderType(_gender);
 
         if (_targetHolder.ButtonType == GamePhaseContentType.Shopping)
