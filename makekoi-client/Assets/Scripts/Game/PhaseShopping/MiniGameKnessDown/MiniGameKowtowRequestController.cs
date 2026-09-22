@@ -54,7 +54,10 @@ public class MiniGameKowtowRequestController : MiniGameBase
     [ContextMenu("Test Load Game")]
     public void TestLoadGame()
     {
-        OnGameLoaded(new MiniGameRequestData(MiniGameType.Dogeza, PartType.Accessory, new System.Collections.Generic.List<PartnerPartData>()));
+        OnGameLoaded(new MiniGameRequestData(
+            MiniGameType.Dogeza,
+            PartType.Accessory,
+            new PartnerPartData(PartType.Accessory, PartGrade.Budget, GenderType.Female)));
     }
     public override void OnGameLoaded(MiniGameRequestData requestData)
     {
@@ -86,11 +89,8 @@ public class MiniGameKowtowRequestController : MiniGameBase
     [ContextMenu("Test Finish Game")]
     public override void OnGameFinishRequested()
     {
-        var partData = RequestData.Parts.Find(part => part.Grade == _currentPartGrade);
-        if (partData != null)
-        {
-            CurrentMiniGameResult = new MiniGameResultData(RequestData.PartType, partData, 0, 0);
-        }
+        // 頭を下げ続けて溜めたバーがそのまま交渉の成果になる
+        CurrentMiniGameResult = CreateResult(_barImage.fillAmount);
 
         _cts?.Cancel();
         _cts?.Dispose();

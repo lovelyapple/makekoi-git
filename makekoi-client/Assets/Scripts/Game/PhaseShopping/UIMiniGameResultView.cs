@@ -69,7 +69,10 @@ public class UIMiniGameResultView : MonoBehaviour
         }
         if (_costText != null)
         {
-            _costText.text = $"{result.CostMoney:N0} 円 / {result.CostTime} 分";
+            // 値切れた場合は定価も並べて見せる
+            _costText.text = result.DiscountAmount > 0
+                ? $"<s>{result.BasePrice:N0}円</s>  {result.CostMoney:N0}円"
+                : $"{result.CostMoney:N0}円";
         }
     }
 

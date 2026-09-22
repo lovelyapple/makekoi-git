@@ -95,7 +95,7 @@ public class ShoppingPresenter : GamePhaseWindowBase
     private async UniTask<Unit> PerformNextPartAsync(MiniGameRequestData miniGameRequestData)
     {
         // Implement the logic for starting the next part of the mini-game
-        var nextTargetPart = miniGameRequestData.Parts.Find(part => part.Grade == PartGrade.Premium);
+        var nextTargetPart = miniGameRequestData.Part;
         if (nextTargetPart != null)
         {
             _currentPartStateView.UpdateNextPartData(nextTargetPart);

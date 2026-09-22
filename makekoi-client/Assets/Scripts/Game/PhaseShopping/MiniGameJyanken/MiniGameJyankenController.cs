@@ -33,6 +33,8 @@ public class MiniGameJyankenController : MiniGameBase
         Scissors,
     }
 
+    private const int MaxBarValue = 5;
+
     private readonly List<Button> _buttons = new();
     private CancellationTokenSource _cts;
     private CancellationTokenSource _resultFrameCts;
@@ -81,12 +83,8 @@ public class MiniGameJyankenController : MiniGameBase
         _isGameActive = false;
         SetButtonsInteractable(false);
 
-        var grade = GetPartGrade();
-        var partData = RequestData.Parts.Find(part => part.Grade == grade);
-        if (partData != null)
-        {
-            CurrentMiniGameResult = new MiniGameResultData(RequestData.PartType, partData, 0, 0);
-        }
+        // 勝ち越した分がそのまま交渉の成果になる
+        CurrentMiniGameResult = CreateResult((float)_barValue / MaxBarValue);
 
         StopGame();
     }
@@ -185,17 +183,8 @@ public class MiniGameJyankenController : MiniGameBase
 
     private void SetBarValue(int value)
     {
-        _barValue = Mathf.Clamp(value, 0, 5);
-        _barImage.fillAmount = _barValue / 5f;
-    }
-
-    private PartGrade GetPartGrade()
-    {
-        return _barValue >= 5
-            ? PartGrade.Premium
-            : _barValue >= 3
-                ? PartGrade.Mid
-                : PartGrade.Budget;
+        _barValue = Mathf.Clamp(value, 0, MaxBarValue);
+        _barImage.fillAmount = (float)_barValue / MaxBarValue;
     }
 
     private static int Judge(Hand playerHand, Hand referenceHand)

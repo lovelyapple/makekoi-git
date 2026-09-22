@@ -92,11 +92,8 @@ public class MiniGameTimingTapController : MiniGameBase
 
     public override void OnGameFinishRequested()
     {
-        var partData = RequestData.Parts.Find(part => part.Grade == _currentPartGrade);
-        if (partData != null)
-        {
-            CurrentMiniGameResult = new MiniGameResultData(RequestData.PartType, partData, 0, 0);
-        }
+        // 成功回数がそのまま交渉の成果になる
+        CurrentMiniGameResult = CreateResult((float)_correctTapCount / Mathf.Max(1, _maxCorrectTapCount));
 
         StopGame();
     }

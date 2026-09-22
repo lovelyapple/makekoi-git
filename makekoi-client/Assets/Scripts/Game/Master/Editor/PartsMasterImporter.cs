@@ -32,6 +32,7 @@ public class PartsMasterImporter
                 Grade = int.Parse(columns[2].Trim()),
                 Name = columns[3].Trim(),
                 TexturePath = columns[4].Trim(),
+                Price = columns.Length >= 6 ? int.Parse(columns[5].Trim()) : 0,
             };
             dataList.Add(record);
         }

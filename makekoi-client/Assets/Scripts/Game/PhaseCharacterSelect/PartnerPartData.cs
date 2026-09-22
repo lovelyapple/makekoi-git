@@ -16,6 +16,8 @@ namespace Makekoi.PartnerCreate
         public PartGrade Grade { get; }
         public Sprite PartSprite { get; }
         public PartsMaster PartMasterRecord { get; }
+        /// <summary>定価。ミニゲームの交渉でここから値引きする。</summary>
+        public int Price => PartMasterRecord != null ? PartMasterRecord.Price : 0;
 
         public PartnerPartData(PartType partType, PartGrade grade, GenderType gender)
         {

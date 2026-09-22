@@ -8,4 +8,5 @@ public class PartsMaster
     public int Grade;  // PartGrade: Premium=0, Mid=1, Budget=2
     public string Name;
     public string TexturePath;
+    public int Price; // 定価。ミニゲームの交渉でここから値引きする
 }
