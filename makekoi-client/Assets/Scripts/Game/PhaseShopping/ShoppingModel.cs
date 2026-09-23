@@ -61,8 +61,11 @@ public class ShoppingModel : SingletonBase<ShoppingModel>
     public const int FavoritePartCount = 1;
     /// <summary>お気に入り商品のグレード。失敗時に下げる余地が要るので最上位で出す。</summary>
     public const PartGrade FavoritePartGrade = PartGrade.Premium;
-    /// <summary>お気に入りチャレンジの成功に必要な値引き率（定価に対する割合）。</summary>
-    public const float FavoriteChallengeRequiredDiscountRate = 0.35f;
+    /// <summary>お気に入りチャレンジの成功ライン。交渉バーのどこまで伸ばせば成功か（矢印の位置と揃える）。</summary>
+    public const float FavoriteChallengeRequiredRate = 0.6f;
+    /// <summary>成功に必要な値引き率（定価に対する割合）。</summary>
+    public static float FavoriteChallengeRequiredDiscountRate =>
+        MiniGameBase.MaxDiscountRate * FavoriteChallengeRequiredRate;
 
     private Dictionary<PartType, MiniGameResultData> _results = new Dictionary<PartType, MiniGameResultData>();
     /// <summary>部位ごとのミニゲーム結果。未実施の部位は null。</summary>

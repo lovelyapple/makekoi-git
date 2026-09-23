@@ -367,8 +367,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: This i important item!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 75fa37aef4fcc4202905d94c51ef1fd3, type: 2}
+  m_sharedMaterial: {fileID: 6470007146901745523, guid: 75fa37aef4fcc4202905d94c51ef1fd3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -449,6 +449,7 @@ GameObject:
   - component: {fileID: 2352399135992840070}
   - component: {fileID: 8517658894132389386}
   - component: {fileID: 3832464696425007802}
+  - component: {fileID: 5049603424998776442}
   m_Layer: 5
   m_Name: Button_confirm
   m_TagString: Untagged
@@ -558,6 +559,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5049603424998776442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 360872535803555641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7a67a699333740b4898f22eaa5863a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButtonSePlayer
+  SelectSeType: 710227119
+  AudioClip: {fileID: 0}
 --- !u!1 &384120188060276443
 GameObject:
   m_ObjectHideFlags: 0
@@ -570,6 +585,7 @@ GameObject:
   - component: {fileID: 6781944713566477982}
   - component: {fileID: 8218216893679582439}
   - component: {fileID: 2749125956684309001}
+  - component: {fileID: 8052676810709040270}
   m_Layer: 5
   m_Name: Button_confirm
   m_TagString: Untagged
@@ -679,6 +695,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &8052676810709040270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 384120188060276443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7a67a699333740b4898f22eaa5863a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButtonSePlayer
+  SelectSeType: 710227119
+  AudioClip: {fileID: 0}
 --- !u!1 &464769444120187466
 GameObject:
   m_ObjectHideFlags: 0
@@ -1134,6 +1164,7 @@ GameObject:
   - component: {fileID: 1818448513114824247}
   - component: {fileID: 297606930694536715}
   - component: {fileID: 8417553920325259729}
+  - component: {fileID: 7474064911213884329}
   m_Layer: 5
   m_Name: Button_male
   m_TagString: Untagged
@@ -1274,6 +1305,20 @@ MonoBehaviour:
   _button: {fileID: 1818448513114824247}
   _unselectedImageObj: {fileID: 6365965429093884678}
   _characterImage: {fileID: 5079157722391441381}
+--- !u!114 &7474064911213884329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 855683000722779689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7a67a699333740b4898f22eaa5863a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButtonSePlayer
+  SelectSeType: 710227119
+  AudioClip: {fileID: 0}
 --- !u!1 &869904741342775629
 GameObject:
   m_ObjectHideFlags: 0
@@ -2355,8 +2400,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: This i important item!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 75fa37aef4fcc4202905d94c51ef1fd3, type: 2}
+  m_sharedMaterial: {fileID: 6470007146901745523, guid: 75fa37aef4fcc4202905d94c51ef1fd3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2492,8 +2537,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 9
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 75fa37aef4fcc4202905d94c51ef1fd3, type: 2}
+  m_sharedMaterial: {fileID: 6470007146901745523, guid: 75fa37aef4fcc4202905d94c51ef1fd3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2740,8 +2785,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Select Chara
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 75fa37aef4fcc4202905d94c51ef1fd3, type: 2}
+  m_sharedMaterial: {fileID: 6470007146901745523, guid: 75fa37aef4fcc4202905d94c51ef1fd3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3008,8 +3053,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: This i important item!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 75fa37aef4fcc4202905d94c51ef1fd3, type: 2}
+  m_sharedMaterial: {fileID: 6470007146901745523, guid: 75fa37aef4fcc4202905d94c51ef1fd3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3385,8 +3430,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: This i important item!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 75fa37aef4fcc4202905d94c51ef1fd3, type: 2}
+  m_sharedMaterial: {fileID: 6470007146901745523, guid: 75fa37aef4fcc4202905d94c51ef1fd3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3728,8 +3773,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: R o l l
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
-  m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 75fa37aef4fcc4202905d94c51ef1fd3, type: 2}
+  m_sharedMaterial: {fileID: 6470007146901745523, guid: 75fa37aef4fcc4202905d94c51ef1fd3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4596,8 +4641,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: This i important item!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 75fa37aef4fcc4202905d94c51ef1fd3, type: 2}
+  m_sharedMaterial: {fileID: 6470007146901745523, guid: 75fa37aef4fcc4202905d94c51ef1fd3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4983,6 +5028,7 @@ GameObject:
   - component: {fileID: 6473514951996904564}
   - component: {fileID: 6718219234380210590}
   - component: {fileID: 3178000205250377616}
+  - component: {fileID: 6317735510116964073}
   m_Layer: 5
   m_Name: Button_female
   m_TagString: Untagged
@@ -5123,6 +5169,20 @@ MonoBehaviour:
   _button: {fileID: 6473514951996904564}
   _unselectedImageObj: {fileID: 5432761838637878840}
   _characterImage: {fileID: 3066819532118394815}
+--- !u!114 &6317735510116964073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4932833288871772055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7a67a699333740b4898f22eaa5863a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButtonSePlayer
+  SelectSeType: 710227119
+  AudioClip: {fileID: 0}
 --- !u!1 &5185350190422698789
 GameObject:
   m_ObjectHideFlags: 0
@@ -5246,6 +5306,7 @@ GameObject:
   - component: {fileID: 3160758534250047473}
   - component: {fileID: 7682900642352790477}
   - component: {fileID: 2946543434996527908}
+  - component: {fileID: 6220052776700382968}
   m_Layer: 5
   m_Name: roll_root
   m_TagString: Untagged
@@ -5308,6 +5369,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed11476fa34e845b68eae605ee943a14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AnimationTriggerFinishedEvent
+--- !u!114 &6220052776700382968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5300898938063782048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77371aae2e3f045b3a93c5c4b1af85a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimationSePlayer
 --- !u!1 &5432761838637878840
 GameObject:
   m_ObjectHideFlags: 0
@@ -6402,8 +6475,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 9
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 75fa37aef4fcc4202905d94c51ef1fd3, type: 2}
+  m_sharedMaterial: {fileID: 6470007146901745523, guid: 75fa37aef4fcc4202905d94c51ef1fd3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -6886,8 +6959,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 9
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 75fa37aef4fcc4202905d94c51ef1fd3, type: 2}
+  m_sharedMaterial: {fileID: 6470007146901745523, guid: 75fa37aef4fcc4202905d94c51ef1fd3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -7424,6 +7497,7 @@ GameObject:
   - component: {fileID: 815257284738227461}
   - component: {fileID: 6396657791860017403}
   - component: {fileID: 7049352724776930046}
+  - component: {fileID: 5357919131371016409}
   m_Layer: 5
   m_Name: Button_start_roll
   m_TagString: Untagged
@@ -7533,6 +7607,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5357919131371016409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7287847250834895344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7a67a699333740b4898f22eaa5863a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButtonSePlayer
+  SelectSeType: 710227119
+  AudioClip: {fileID: 0}
 --- !u!1 &7588226532919161305
 GameObject:
   m_ObjectHideFlags: 0
@@ -8564,6 +8652,7 @@ GameObject:
   - component: {fileID: 5949445331458894607}
   - component: {fileID: 7496296755421240071}
   - component: {fileID: 4820140341117526426}
+  - component: {fileID: 6391853557069332371}
   m_Layer: 5
   m_Name: Button_confirm
   m_TagString: Untagged
@@ -8673,6 +8762,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &6391853557069332371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8581140437243162700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7a67a699333740b4898f22eaa5863a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButtonSePlayer
+  SelectSeType: 710227119
+  AudioClip: {fileID: 0}
 --- !u!1 &8737339072448060721
 GameObject:
   m_ObjectHideFlags: 0
@@ -9016,8 +9119,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: This i important item!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 75fa37aef4fcc4202905d94c51ef1fd3, type: 2}
+  m_sharedMaterial: {fileID: 6470007146901745523, guid: 75fa37aef4fcc4202905d94c51ef1fd3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

@@ -16,7 +16,8 @@ public class ShoppingPresenter : GamePhaseWindowBase
     [SerializeField] private MiniGamePerformController _miniGamePerformController;
     [SerializeField] private Button _welcomeReactionButton;
     [SerializeField] private GameObject _miniGameRoot;
-    // お気に入りチャレンジ中だけ点滅させる枠
+    // お気に入りチャレンジ中だけ出す表示
+    [SerializeField] private GameObject _challengeMissionRoot;
     [SerializeField] private Image _challengeFrameImage;
     [SerializeField] private float _challengeFrameFadeCycle = 0.8f;
     [SerializeField] private ShoppingFailedView _shoppingFailedView;
@@ -293,6 +294,11 @@ public class ShoppingPresenter : GamePhaseWindowBase
     /// <summary>お気に入りチャレンジ中の枠を点滅させる。</summary>
     private void SetChallengeFrameActive(bool isActive)
     {
+        if (_challengeMissionRoot != null)
+        {
+            _challengeMissionRoot.SetActive(isActive);
+        }
+
         _challengeFrameCts?.Cancel();
         _challengeFrameCts?.Dispose();
         _challengeFrameCts = null;
