@@ -16,6 +16,9 @@ public class ShoppingPresenter : GamePhaseWindowBase
     [SerializeField] private MiniGamePerformController _miniGamePerformController;
     [SerializeField] private Button _welcomeReactionButton;
     [SerializeField] private GameObject _miniGameRoot;
+    // お気に入りチャレンジ中だけ点滅させる枠
+    [SerializeField] private Image _challengeFrameImage;
+    [SerializeField] private float _challengeFrameFadeCycle = 0.8f;
     [SerializeField] private ShoppingFailedView _shoppingFailedView;
     #region MiniGame_phase
     private const float DogezaPhaseDuration = 5f;
@@ -26,9 +29,9 @@ public class ShoppingPresenter : GamePhaseWindowBase
     private float _currentMiniGamePhaseTimeLeft = 0f;
     private float _currentMiniGamePhaseDuration;
     private PartType _currentPartType;
-    private PartGrade _currentPartGrade;
     private IMiniGame _currentGameController;
     private CancellationTokenSource _miniGamePhaseCts;
+    private CancellationTokenSource _challengeFrameCts;
     private bool _isMiniGamePhaseFinished;
     #endregion
     CancellationTokenSource _miniGameStartPerformanceCts;
@@ -97,6 +100,7 @@ public class ShoppingPresenter : GamePhaseWindowBase
     private void OnStartMiniGameRequested(MiniGameRequestData requestData)
     {
         _currentPartType = requestData.PartType;
+        SetChallengeFrameActive(requestData.IsFavoriteChallenge);
         _miniGameRoot.SetActive(true);
         _currentMiniGamePhaseDuration = GetMiniGamePhaseDuration(requestData.MiniGameType);
         _currentMiniGamePhaseTimeLeft = _currentMiniGamePhaseDuration;
@@ -125,6 +129,14 @@ public class ShoppingPresenter : GamePhaseWindowBase
             _currentPartStateView.UpdatePartData(nextTargetPart);
         }
 
+        if (nextTargetPart.Grade == PartGrade.Premium)
+        {
+            await UniTask.Delay(System.TimeSpan.FromSeconds(1),
+                cancellationToken: this.GetCancellationTokenOnDestroy());
+            await _currentPartStateView.ShowImportantAsync();
+            await OnClickNext();
+        }
+
         foreach (var miniGameController in _miniGameControllers)
         {
             if (miniGameController.ThisMiniGameType == miniGameRequestData.MiniGameType)
@@ -144,7 +156,6 @@ public class ShoppingPresenter : GamePhaseWindowBase
     }
     private async UniTask<Unit> StartMinigame()
     {
-        _currentPartGrade = PartGrade.Premium;
         _currentPartStateView.UpdateBlink(UIShoppingCurrentPartStateView.BlinkSpeed.Slow);
 
         // _currentGameController.Init(_currentPartStateView);
@@ -186,6 +197,7 @@ public class ShoppingPresenter : GamePhaseWindowBase
     private async UniTask<Unit> FinishMiniGamePhaseAsync()
     {
         _currentPartStateView.UpdateBlink(UIShoppingCurrentPartStateView.BlinkSpeed.None);
+        SetChallengeFrameActive(false);
 
         var gameController = _currentGameController;
         _currentGameController = null;
@@ -212,6 +224,8 @@ public class ShoppingPresenter : GamePhaseWindowBase
     }
     private async UniTask<Unit> PerformShoppingFailedAsync()
     {
+        SoundManager.PlaySeByType(CommonSeType.game_failed);
+
         // mini_game_failed は _miniGameRoot の子なので、root は出したままにする
         // 失敗パネルを読んでいる間に消えないよう、自動で閉じない
         _charaReactionView.UpdateCharacterReaction(StaffReactionCode.MiniGame_Failed, autoClose: false);
@@ -275,4 +289,39 @@ public class ShoppingPresenter : GamePhaseWindowBase
         PartGrade.Mid => StaffReactionCode.Result_Mid,
         _ => StaffReactionCode.Result_Budget,
     };
+
+    /// <summary>お気に入りチャレンジ中の枠を点滅させる。</summary>
+    private void SetChallengeFrameActive(bool isActive)
+    {
+        _challengeFrameCts?.Cancel();
+        _challengeFrameCts?.Dispose();
+        _challengeFrameCts = null;
+
+        if (_challengeFrameImage == null) return;
+
+        if (!isActive)
+        {
+            _challengeFrameImage.gameObject.SetActive(false);
+            return;
+        }
+
+        _challengeFrameImage.gameObject.SetActive(true);
+        _challengeFrameCts = CancellationTokenSource.CreateLinkedTokenSource(this.GetCancellationTokenOnDestroy());
+        FadeChallengeFrameAsync(_challengeFrameCts.Token).Forget();
+    }
+
+    private async UniTaskVoid FadeChallengeFrameAsync(CancellationToken ct)
+    {
+        var cycle = Mathf.Max(0.05f, _challengeFrameFadeCycle);
+        var elapsed = 0f;
+        var color = _challengeFrameImage.color;
+        while (!ct.IsCancellationRequested)
+        {
+            elapsed += Time.deltaTime;
+            // 0 -> 1 -> 0 を繰り返す
+            color.a = Mathf.PingPong(elapsed / cycle, 1f);
+            _challengeFrameImage.color = color;
+            await UniTask.Yield(PlayerLoopTiming.Update, ct);
+        }
+    }
 }

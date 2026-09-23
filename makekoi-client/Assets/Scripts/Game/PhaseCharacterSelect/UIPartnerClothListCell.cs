@@ -13,7 +13,7 @@ public class UIPartnerClothListCell : MonoBehaviour
     {
         _importantMarkObj.SetActive(false);
     }
-    public void UpdateCell(PartnerPartData partData)
+    public void UpdateCell(PartnerPartData partData, bool isFavorite = false)
     {
         if (_partIconImage != null)
         {

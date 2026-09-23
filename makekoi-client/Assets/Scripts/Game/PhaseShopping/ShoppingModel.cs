@@ -17,12 +17,15 @@ public sealed class MiniGameRequestData
     public readonly PartnerPartData Part;
     /// <summary>交渉前の定価。</summary>
     public readonly long BasePrice;
-    public MiniGameRequestData(MiniGameType miniGameType, PartType partType, PartnerPartData part)
+    /// <summary>お気に入り商品への挑戦か。失敗するとグレードを下げて仕切り直しになる。</summary>
+    public readonly bool IsFavoriteChallenge;
+    public MiniGameRequestData(MiniGameType miniGameType, PartType partType, PartnerPartData part, bool isFavoriteChallenge = false)
     {
         MiniGameType = miniGameType;
         PartType = partType;
         Part = part;
         BasePrice = part != null ? part.Price : 0;
+        IsFavoriteChallenge = isFavoriteChallenge;
     }
 }
 public sealed class MiniGameResultData
@@ -36,25 +39,47 @@ public sealed class MiniGameResultData
     public readonly int BasePrice;
     /// <summary>獲得スコア。</summary>
     public readonly int Score;
+    /// <summary>お気に入り商品への挑戦だったか。</summary>
+    public readonly bool IsFavoriteChallenge;
     /// <summary>値引きできた額。</summary>
     public long DiscountAmount => BasePrice - CostMoney;
-    public MiniGameResultData(PartType partType, PartnerPartData resultPart, long costTime, int costMoney, int basePrice)
+    /// <summary>定価に対して何割値引けたか。</summary>
+    public float DiscountRate => BasePrice > 0 ? (float)DiscountAmount / BasePrice : 0f;
+    public MiniGameResultData(PartType partType, PartnerPartData resultPart, long costTime, int costMoney, int basePrice, bool isFavoriteChallenge = false)
     {
         PartType = partType;
         ResultPart = resultPart;
         CostTime = costTime;
         CostMoney = costMoney;
         BasePrice = basePrice;
+        IsFavoriteChallenge = isFavoriteChallenge;
     }
 }
 public class ShoppingModel : SingletonBase<ShoppingModel>
 {
+    /// <summary>品揃えのうち、お気に入り（目玉商品）にする部位の数。</summary>
+    public const int FavoritePartCount = 1;
+    /// <summary>お気に入り商品のグレード。失敗時に下げる余地が要るので最上位で出す。</summary>
+    public const PartGrade FavoritePartGrade = PartGrade.Premium;
+    /// <summary>お気に入りチャレンジの成功に必要な値引き率（定価に対する割合）。</summary>
+    public const float FavoriteChallengeRequiredDiscountRate = 0.35f;
+
     private Dictionary<PartType, MiniGameResultData> _results = new Dictionary<PartType, MiniGameResultData>();
     /// <summary>部位ごとのミニゲーム結果。未実施の部位は null。</summary>
     public IReadOnlyDictionary<PartType, MiniGameResultData> Results => _results;
     // 買い物開始時に部位ごとに抽選した「その日の品揃え」
     private Dictionary<PartType, PartnerPartData> _offeredParts = new Dictionary<PartType, PartnerPartData>();
     public IReadOnlyDictionary<PartType, PartnerPartData> OfferedParts => _offeredParts;
+    // 目玉商品としてチャレンジ対象になる部位
+    private HashSet<PartType> _favoriteParts = new HashSet<PartType>();
+    // チャレンジを実施済みの部位。一度挑んだら通常プレイに落ちる
+    private HashSet<PartType> _challengedParts = new HashSet<PartType>();
+    // チャレンジに成功して、お気に入りのまま買えた部位
+    private HashSet<PartType> _achievedFavoriteParts = new HashSet<PartType>();
+    /// <summary>その部位が今日の目玉商品か。</summary>
+    public bool IsFavorite(PartType partType) => _favoriteParts.Contains(partType);
+    /// <summary>お気に入りチャレンジに成功して、お気に入りのまま買えたか。</summary>
+    public bool IsFavoriteAchieved(PartType partType) => _achievedFavoriteParts.Contains(partType);
     private GenderType _currentGender;
     private int _currentPartIndex = 0;
     private Subject<MiniGameRequestData> _startMiniGameSubject = new Subject<MiniGameRequestData>();
@@ -65,6 +90,9 @@ public class ShoppingModel : SingletonBase<ShoppingModel>
     {
         _results.Clear();
         _offeredParts.Clear();
+        _favoriteParts.Clear();
+        _challengedParts.Clear();
+        _achievedFavoriteParts.Clear();
         _currentPartIndex = 0;
     }
     public void Init(GenderType gender)
@@ -77,14 +105,31 @@ public class ShoppingModel : SingletonBase<ShoppingModel>
         _currentPartIndex = 0;
         _results.Clear();
         _offeredParts.Clear();
+        _favoriteParts.Clear();
+        _challengedParts.Clear();
+        _achievedFavoriteParts.Clear();
 
         var grades = (PartGrade[])System.Enum.GetValues(typeof(PartGrade));
-        foreach (PartType partType in System.Enum.GetValues(typeof(PartType)))
+        var partTypes = (PartType[])System.Enum.GetValues(typeof(PartType));
+        foreach (var partType in partTypes)
         {
             _results[partType] = null;
             // 部位ごとにグレードを1つ抽選する。これがその日その店に並ぶ品になる
             var grade = grades[Random.Range(0, grades.Length)];
             _offeredParts[partType] = new PartnerPartData(partType, grade, _currentGender);
+        }
+
+        // 品揃えの中から決まった数だけ目玉商品を選び、最上位グレードで並べ直す
+        var candidates = new List<PartType>(partTypes);
+        var favoriteCount = Mathf.Clamp(FavoritePartCount, 0, candidates.Count);
+        for (var i = 0; i < favoriteCount; i++)
+        {
+            var index = Random.Range(0, candidates.Count);
+            var favoritePartType = candidates[index];
+            candidates.RemoveAt(index);
+
+            _favoriteParts.Add(favoritePartType);
+            _offeredParts[favoritePartType] = new PartnerPartData(favoritePartType, FavoritePartGrade, _currentGender);
         }
     }
 
@@ -106,11 +151,32 @@ public class ShoppingModel : SingletonBase<ShoppingModel>
             _offeredParts[partType] = offeredPart;
         }
 
-        var miniGameRequestData = new MiniGameRequestData(miniGameType, partType, offeredPart);
+        // 目玉商品はまず一発勝負のチャレンジ。落とすと通常プレイに降りる
+        var isFavoriteChallenge = _favoriteParts.Contains(partType) && !_challengedParts.Contains(partType);
+
+        var miniGameRequestData = new MiniGameRequestData(miniGameType, partType, offeredPart, isFavoriteChallenge);
         _startMiniGameSubject.OnNext(miniGameRequestData);
     }
     public void OnMiniGameFinished(MiniGameResultData miniGameResultData)
     {
+        var partType = miniGameResultData.PartType;
+
+        if (miniGameResultData.IsFavoriteChallenge)
+        {
+            _challengedParts.Add(partType);
+
+            if (miniGameResultData.DiscountRate < FavoriteChallengeRequiredDiscountRate)
+            {
+                // 値切り切れなかったので、お気に入りは引っ込められる。
+                // 一段下のグレードで並べ直して、同じ部位をもう一度やり直す
+                DowngradeOfferedPart(partType);
+                StartMiniGame();
+                return;
+            }
+
+            _achievedFavoriteParts.Add(partType);
+        }
+
         _results[miniGameResultData.PartType] = miniGameResultData;
         _currentPartIndex++;
 
@@ -144,6 +210,18 @@ public class ShoppingModel : SingletonBase<ShoppingModel>
         _currentPartIndex = System.Enum.GetValues(typeof(PartType)).Length;
     }
 #endif
+    /// <summary>お気に入りチャレンジに失敗した部位を、一段下のグレードに差し替える。</summary>
+    private void DowngradeOfferedPart(PartType partType)
+    {
+        if (!_offeredParts.TryGetValue(partType, out var current) || current == null) return;
+
+        var lowestGrade = PartGrade.Budget;
+        if (current.Grade >= lowestGrade) return; // これ以上下げられない
+
+        var nextGrade = (PartGrade)((int)current.Grade + 1);
+        _offeredParts[partType] = new PartnerPartData(partType, nextGrade, _currentGender);
+    }
+
     public void OnShoppingFinished()
     {
         // All parts finished

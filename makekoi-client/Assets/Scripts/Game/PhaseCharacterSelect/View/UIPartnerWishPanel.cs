@@ -23,7 +23,7 @@ public class UIPartnerWishPanel : UICharacterSelectPanelBase
             var cell = _wishListCells[cellIndex];
             cell.gameObject.SetActive(true);
             cell.OnReset();
-            cell.UpdateCell(part);
+            cell.UpdateCell(part, ShoppingModel.Instance.IsFavorite(partType));
             cellIndex++;
         }
 

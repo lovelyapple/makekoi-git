@@ -7,8 +7,8 @@ public sealed class ShopResultScore
     /// <summary>値引きが100%だった場合に1部位でもらえる点。</summary>
     public const int DiscountBaseScore = 1000;
     /// <summary>グレード点 (Budget 0 / Mid 50 / Premium 100) に掛ける倍率。</summary>
-    public const int GradeBonusMultiplier = 100;
-    /// <summary>お気に入りの部位を買えた場合のボーナス。</summary>
+    public const int GradeBonusMultiplier = 50;
+    /// <summary>お気に入り商品をチャレンジで勝ち取った場合のボーナス。</summary>
     public const int WishBonusScore = 500;
 
     /// <summary>値引き率スコアの合計。</summary>
@@ -48,7 +48,6 @@ public sealed class ShopResultScore
     public static ShopResultScore Calculate()
     {
         var results = ShoppingModel.Instance.Results;
-        var wishPartType = (PartType)GameModel.Instance.SessionData.WishPartId;
 
         var partScore = 0;
         var gradeBonus = 0;
@@ -64,7 +63,8 @@ public sealed class ShopResultScore
             partScore += GetDiscountScore(result);
             gradeBonus += GetGradeScore(result.ResultPart.Grade) * GradeBonusMultiplier;
 
-            if (partType == wishPartType)
+            // お気に入りチャレンジに勝って、目玉商品のまま買えた部位だけ加点する
+            if (ShoppingModel.Instance.IsFavoriteAchieved(partType))
             {
                 wishBonus += WishBonusScore;
             }

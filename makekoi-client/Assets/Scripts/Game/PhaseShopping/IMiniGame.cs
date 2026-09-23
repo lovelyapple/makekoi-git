@@ -55,7 +55,8 @@ public abstract class MiniGameBase : MonoBehaviour, IMiniGame
     protected MiniGameResultData CreateResult(float negotiationRate)
     {
         return new MiniGameResultData(
-            RequestData.PartType, RequestData.Part, 0, (int)CalcCostMoney(negotiationRate), (int)RequestData.BasePrice);
+            RequestData.PartType, RequestData.Part, 0, (int)CalcCostMoney(negotiationRate), (int)RequestData.BasePrice,
+            RequestData.IsFavoriteChallenge);
     }
 
     /// <summary>値段のドラムを定価に戻す。ゲーム開始時に呼ぶ。</summary>
