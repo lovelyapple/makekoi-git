@@ -136,6 +136,7 @@ public class ShoppingPresenter : GamePhaseWindowBase
                 cancellationToken: this.GetCancellationTokenOnDestroy());
             await _currentPartStateView.ShowImportantAsync();
             await OnClickNext();
+            _currentPartStateView.TurnOffImportant();
         }
 
         foreach (var miniGameController in _miniGameControllers)
@@ -211,6 +212,15 @@ public class ShoppingPresenter : GamePhaseWindowBase
             return Unit.Default;
         }
 
+        // お気に入りチャレンジに失敗したときは買い物が成立しないので、支払わせない。
+        // モデル側がグレードを下げて同じ部位を出し直す
+        if (ShoppingModel.Instance.IsFavoriteChallengeFailed(result))
+        {
+            await PerformFavoriteChallengeFailedAsync();
+            ShoppingModel.Instance.OnMiniGameFinished(result);
+            return Unit.Default;
+        }
+
         await RunMiniGamePahseReusltConfirmAsync(result);
 
         // 払った結果マイナスになったら、そこで買い物は打ち切り
@@ -221,6 +231,15 @@ public class ShoppingPresenter : GamePhaseWindowBase
         }
 
         ShoppingModel.Instance.OnMiniGameFinished(result);
+        return Unit.Default;
+    }
+    /// <summary>お気に入りを取り逃がしたときの一拍。買い物自体は続く。</summary>
+    private async UniTask<Unit> PerformFavoriteChallengeFailedAsync()
+    {
+        _charaReactionView.UpdateCharacterReaction(StaffReactionCode.Favorite_ChallengeFailed);
+        await UniTask.Delay(System.TimeSpan.FromSeconds(2f),
+            cancellationToken: this.GetCancellationTokenOnDestroy());
+        _charaReactionView.CloseReactionMsgBox();
         return Unit.Default;
     }
     private async UniTask<Unit> PerformShoppingFailedAsync()

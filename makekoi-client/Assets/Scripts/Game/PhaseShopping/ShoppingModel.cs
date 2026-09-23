@@ -79,6 +79,10 @@ public class ShoppingModel : SingletonBase<ShoppingModel>
     private HashSet<PartType> _challengedParts = new HashSet<PartType>();
     // チャレンジに成功して、お気に入りのまま買えた部位
     private HashSet<PartType> _achievedFavoriteParts = new HashSet<PartType>();
+    /// <summary>お気に入りチャレンジに挑んで、値切り切れなかった結果か。買い物は成立しない。</summary>
+    public bool IsFavoriteChallengeFailed(MiniGameResultData result) =>
+        result != null && result.IsFavoriteChallenge && result.DiscountRate < FavoriteChallengeRequiredDiscountRate;
+
     /// <summary>その部位が今日の目玉商品か。</summary>
     public bool IsFavorite(PartType partType) => _favoriteParts.Contains(partType);
     /// <summary>お気に入りチャレンジに成功して、お気に入りのまま買えたか。</summary>
@@ -168,7 +172,7 @@ public class ShoppingModel : SingletonBase<ShoppingModel>
         {
             _challengedParts.Add(partType);
 
-            if (miniGameResultData.DiscountRate < FavoriteChallengeRequiredDiscountRate)
+            if (IsFavoriteChallengeFailed(miniGameResultData))
             {
                 // 値切り切れなかったので、お気に入りは引っ込められる。
                 // 一段下のグレードで並べ直して、同じ部位をもう一度やり直す
