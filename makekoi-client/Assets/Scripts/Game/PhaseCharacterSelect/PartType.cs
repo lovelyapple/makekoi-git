@@ -4,10 +4,10 @@ namespace Makekoi.PartnerCreate
     {
         Top = 0,
         Inner = 1,
-        // Bottom = 2,
-        // Shoes = 3,
-        // Accessory = 4,
-        // Bag = 5,
-        // HairAccessory = 6
+        Bottom = 2,
+        Shoes = 3,
+        Accessory = 4,
+        Bag = 5,
+        HairAccessory = 6
     }
 }

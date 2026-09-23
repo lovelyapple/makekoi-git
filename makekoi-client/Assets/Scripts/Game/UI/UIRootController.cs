@@ -44,6 +44,6 @@ public class UIRootController : MonoBehaviour
     private static void EnterContent(UIGameContentHolder holder)
     {
         if (holder == null || !holder.IsContentLoaded) return;
-        holder.Content.OnEnter();
+        holder.Content.EnterPhase();
     }
 }

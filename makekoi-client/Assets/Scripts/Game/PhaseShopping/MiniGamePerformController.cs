@@ -7,6 +7,7 @@ public class MiniGamePerformController : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _miniGameFixLabel;
     [SerializeField] private TextMeshProUGUI _miniGameNameGUI;
+
     [SerializeField] private float _nameRevealDelay = 0.5f; // 固定ラベルだけを見せる溜めの時間
     [SerializeField] private float _nameReadDuration = 1f;  // ゲーム名を読ませる時間
 

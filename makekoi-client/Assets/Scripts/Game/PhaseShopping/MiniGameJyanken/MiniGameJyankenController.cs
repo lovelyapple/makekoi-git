@@ -213,6 +213,11 @@ public class MiniGameJyankenController : MiniGameBase
 
     private void PlayResultFrame(bool isWin)
     {
+        // 勝ち負けが決まった瞬間に鳴らす。引き分けはここまで来ない
+        SoundManager.PlaySeByType(isWin
+            ? CommonSeType.mini_game_action_win
+            : CommonSeType.mini_game_action_lose);
+
         _resultFrameCts?.Cancel();
         _resultFrameCts?.Dispose();
         _resultFrameCts = new CancellationTokenSource();

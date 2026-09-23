@@ -19,6 +19,10 @@ public class AdvTable : ScriptableObject
 public static class AdvTableContainer
 {
     public const string CharacterGenderSelectConfirm = "GENDER_SELECT_CONFIRM";
+    public const string ResultReactionGreat = "RESULT_REACTION_GREAT";
+    public const string ResultReactionGood = "RESULT_REACTION_GOOD";
+    public const string ResultReactionNormal = "RESULT_REACTION_NORMAL";
+    public const string ResultReactionBad = "RESULT_REACTION_BAD";
     private static AdvTable _master;
 
     public static AdvTable Master

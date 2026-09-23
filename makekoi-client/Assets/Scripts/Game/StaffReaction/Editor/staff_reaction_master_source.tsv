@@ -29,5 +29,5 @@ TimeTap_Failure	3	2D/Texture/StaffReaction/chara_reaction_05	だめです。¥n�
 MiniGame_Failed	1	2D/Texture/StaffReaction/chara_reaction_05	あら。¥nお財布の中身、足りていませんよ。
 MiniGame_Failed	2	2D/Texture/StaffReaction/chara_reaction_05	掛け売りはしておりません。¥n……本日はここまでですね。
 MiniGame_Failed	3	2D/Texture/StaffReaction/chara_reaction_05	払えないものは、¥nお売りできません。お帰りはあちらです。
-Favorite_ChallengeFailed	1	2D/Texture/StaffReaction/chara_reaction_00	この品はお渡しできません。¥n……お客様には、まだ早いかと。
-Favorite_ChallengeFailed	2	2D/Texture/StaffReaction/chara_reaction_00	残念でしたね。¥nでは、こちらでいかがです？
+Favorite_ChallengeFailed	1	2D/Texture/StaffReaction/chara_reaction_05	この品はお渡しできません。¥n……お客様には、まだ早いかと。
+Favorite_ChallengeFailed	2	2D/Texture/StaffReaction/chara_reaction_05	残念でしたね。¥nでは、こちらでいかがです？

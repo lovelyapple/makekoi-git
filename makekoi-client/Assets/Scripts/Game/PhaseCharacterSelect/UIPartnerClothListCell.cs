@@ -24,6 +24,7 @@ public class UIPartnerClothListCell : MonoBehaviour
         {
             _partNameText.text = partData.PartMasterRecord != null ? partData.PartMasterRecord.Name : string.Empty;
         }
-        _importantMarkObj.SetActive(partData.Grade == PartGrade.Premium);
+        // 目玉商品の印。グレードではなくお気に入り指定で点灯する
+        _importantMarkObj.SetActive(isFavorite);
     }
 }

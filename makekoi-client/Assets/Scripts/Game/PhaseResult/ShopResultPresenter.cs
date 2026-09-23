@@ -57,6 +57,19 @@ public class ShopResultPresenter : GamePhaseWindowBase
 
         await UniTask.Delay(1000, cancellationToken: ct);
 
-        await _shopResultScoreView.ShowScoreAsync(ct);
+        var score = await _shopResultScoreView.ShowScoreAsync(ct);
+
+        await UniTask.Delay(1000, cancellationToken: ct);
+
+        // 集計まで見せたら、デート相手の反応を出来ばえ別に再生する
+        await UICommonCharacterMessageWindow.PlayAdvAsync(
+            GetResultAdvCode(score.Rank), GameModel.Instance.SessionData.SelectedGender);
     }
+    private static string GetResultAdvCode(ShopResultRank rank) => rank switch
+    {
+        ShopResultRank.Great => AdvTableContainer.ResultReactionGreat,
+        ShopResultRank.Good => AdvTableContainer.ResultReactionGood,
+        ShopResultRank.Normal => AdvTableContainer.ResultReactionNormal,
+        _ => AdvTableContainer.ResultReactionBad,
+    };
 }

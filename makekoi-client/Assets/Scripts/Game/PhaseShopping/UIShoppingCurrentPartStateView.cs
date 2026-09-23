@@ -12,6 +12,7 @@ public class UIShoppingCurrentPartStateView : MonoBehaviour
     [SerializeField] private UINumberRollerGroup _costMoneyRollerGroup;
     [SerializeField] private Image _timeLeftFillImage;
     [SerializeField] private Image _timeLeftFillBgImage;
+    [SerializeField] private Image _importantImage;
 
     public enum BlinkSpeed { None, Slow, Medium, Fast }
 
@@ -24,14 +25,16 @@ public class UIShoppingCurrentPartStateView : MonoBehaviour
     }
     public void UpdatePartData(PartnerPartData partData)
     {
-        _partnerClothListCell.UpdateCell(partData);
+        _partnerClothListCell.UpdateCell(partData, ShoppingModel.Instance.IsFavorite(partData.PartType));
         _nextPartnerClothListCell.gameObject.SetActive(false);
         _costMoneyRollerGroup.gameObject.SetActive(false);
+        _importantImage.gameObject.SetActive(false);
     }
     public void UpdateNextPartData(PartnerPartData partData)
     {
-        _nextPartnerClothListCell.UpdateCell(partData);
+        _nextPartnerClothListCell.UpdateCell(partData, ShoppingModel.Instance.IsFavorite(partData.PartType));
         _nextPartnerClothListCell.gameObject.SetActive(true);
+        _importantImage.gameObject.SetActive(false);
     }
     public async UniTask<Unit> UpdateCostMoneyRollerAsync(PartnerPartData partData)
     {
@@ -81,5 +84,15 @@ public class UIShoppingCurrentPartStateView : MonoBehaviour
             _timeLeftFillBgImage.color = color;
             await UniTask.Yield(PlayerLoopTiming.Update, ct);
         }
+    }
+    public async UniTask<Unit> ShowImportantAsync()
+    {
+        _importantImage.gameObject.SetActive(true);
+        await UniTask.Delay(System.TimeSpan.FromSeconds(1f), cancellationToken: this.GetCancellationTokenOnDestroy());
+        return Unit.Default;
+    }
+    public void TurnOffImportant()
+    {
+        _importantImage.gameObject.SetActive(false);
     }
 }

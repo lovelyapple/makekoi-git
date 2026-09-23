@@ -40,7 +40,7 @@ public class DevPhaseSceneBootstrap : MonoBehaviour
             .AddTo(this);
 
         SyncFooter();
-        _targetHolder.Content.OnEnter();
+        _targetHolder.Content.EnterPhase();
     }
 
     /// <summary>本番では UIRootController がやっているフッタータブの選択表示を代行する。</summary>

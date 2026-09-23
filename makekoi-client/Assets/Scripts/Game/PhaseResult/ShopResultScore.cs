@@ -1,6 +1,15 @@
 using Makekoi.PartnerCreate;
 using UnityEngine;
 
+/// <summary>デート相手のリアクションを出し分けるための出来ばえ。</summary>
+public enum ShopResultRank
+{
+    Bad,
+    Normal,
+    Good,
+    Great,
+}
+
 // リザルトのスコア内訳。買い物結果と所持金から算出する。
 public sealed class ShopResultScore
 {
@@ -21,6 +30,41 @@ public sealed class ShopResultScore
     public readonly int WishBonus;
 
     public int Total => PartScore + MoneyLeftScore + GradeBonus + WishBonus;
+
+    // ランクの境目。理論値に対する達成率で見る。
+    private const float GreatRate = 0.80f;
+    private const float GoodRate = 0.60f;
+    private const float NormalRate = 0.35f;
+
+    /// <summary>
+    /// 全部位を最上位グレードで買い、値引きも上限まで決め、お気に入りも取り切った場合の理論値。
+    /// 残高点は青天井なので含めない (7部位なら 7 * 5500 + 500 = 39000)。
+    /// </summary>
+    public static int ReferenceScore
+    {
+        get
+        {
+            var partCount = System.Enum.GetValues(typeof(PartType)).Length;
+            var perPart = Mathf.RoundToInt(DiscountBaseScore * MiniGameBase.MaxDiscountRate)
+                          + GetGradeScore(PartGrade.Premium) * GradeBonusMultiplier;
+            return partCount * perPart + ShoppingModel.FavoritePartCount * WishBonusScore;
+        }
+    }
+
+    /// <summary>理論値に対する達成率。残高点が乗るので 1 を超えることがある。</summary>
+    public float AchievementRate => ReferenceScore <= 0 ? 0f : (float)Total / ReferenceScore;
+
+    public ShopResultRank Rank
+    {
+        get
+        {
+            var rate = AchievementRate;
+            if (rate >= GreatRate) return ShopResultRank.Great;
+            if (rate >= GoodRate) return ShopResultRank.Good;
+            if (rate >= NormalRate) return ShopResultRank.Normal;
+            return ShopResultRank.Bad;
+        }
+    }
 
     private ShopResultScore(int partScore, int moneyLeftScore, int gradeBonus, int wishBonus)
     {

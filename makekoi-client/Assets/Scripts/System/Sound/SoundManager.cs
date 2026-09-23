@@ -12,11 +12,18 @@ public class SoundManager : MonoBehaviour
     [SerializeField] BgmFader BgmFader;
     [SerializeField] SeRootController SeRootController;
 
+    /// <summary>起動時の BGM 音量。0.5 が 0dB (SetBgmVolume 参照)。</summary>
+    private const float DefaultBgmVolume = 0.5f;
+
     public void Awake()
     {
         _instance = this;
-        SetBgmVolume(1f);
-        SetSeVolume(1f);
+    }
+
+    // AudioMixer.SetFloat は Awake ではまだミキサーが立ち上がっておらず黙って失敗するので Start で入れる
+    private void Start()
+    {
+        SetBgmVolume(DefaultBgmVolume);
     }
 
     public static AudioMixerGroup BgmMixerGroup() => _instance.GameAudioMixer.FindMatchingGroups("BGM")[0];

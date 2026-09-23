@@ -17,7 +17,7 @@ public class UIClothPartResultCell : UIPartnerClothListCell
 
     public void SetPartResultData(MiniGameResultData partResultData)
     {
-        base.UpdateCell(partResultData.ResultPart);
+        base.UpdateCell(partResultData.ResultPart, ShoppingModel.Instance.IsFavorite(partResultData.PartType));
         _priceLabel.text = partResultData.BasePrice.ToString();
         _costLabel.text = partResultData.CostMoney.ToString();
         if (_scoreLabel != null)

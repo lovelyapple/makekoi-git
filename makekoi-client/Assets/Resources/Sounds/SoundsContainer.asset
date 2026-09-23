@@ -19,4 +19,20 @@ MonoBehaviour:
     Clip: {fileID: 8300000, guid: 2e974960e5c3944a381d7f7b5e5cae20, type: 3}
   - SoundType: common_btn_cancel
     Clip: {fileID: 8300000, guid: 3d13807ee03c847b2a8a2783eb232a7e, type: 3}
-  BgmResources: []
+  - SoundType: mini_game_action_win
+    Clip: {fileID: 8300000, guid: f036db307a69241ffa85f006acd75776, type: 3}
+  - SoundType: mini_game_action_lose
+    Clip: {fileID: 8300000, guid: 773a0225cd8604199b4a19bfc1c83ce5, type: 3}
+  - SoundType: game_failed
+    Clip: {fileID: 8300000, guid: 0ef9911ed56ab49348958f57c3afeb41, type: 3}
+  - SoundType: wallet_confirm
+    Clip: {fileID: 8300000, guid: a52c9fe65618c4b03bbb01981640a9a9, type: 3}
+  - SoundType: wallet_rolling
+    Clip: {fileID: 8300000, guid: e0648a5264d86472f97a3b8851374f64, type: 3}
+  BgmResources:
+  - SoundType: phase_main
+    Clip: {fileID: 8300000, guid: 4345bb70d4f1f497e9f32b3211e1595e, type: 3}
+  - SoundType: phase_shopping
+    Clip: {fileID: 8300000, guid: 70a596a41a65242f7a99daac28ec5dbe, type: 3}
+  - SoundType: phase_result
+    Clip: {fileID: 8300000, guid: f4040840bba414d3a8627f428635f8e8, type: 3}
