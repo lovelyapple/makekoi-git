@@ -1,0 +1,16 @@
+{
+  "name": "com.astrayde.framework",
+  "version": "0.1.0",
+  "displayName": "Astrayde Framework",
+  "description": "Core shared framework for Astrayde Unity projects",
+  "unity": "2022.3",
+  "author": {
+    "name": "lovelyapple",
+    "url": "https://github.com/lovelyapple"
+  },
+  "dependencies": {
+    "com.cysharp.unitask": "2.5.10",
+    "com.cysharp.r3": "1.1.0",
+    "org.nuget.observablecollections.r3": "3.3.4"
+  }
+}

@@ -4315,6 +4315,7 @@ MonoBehaviour:
   _snapDuration: 0.25
   _spacing: 0
   _isVertical: 1
+  _fitCellSizeToViewport: 1
   _prevButton: {fileID: 1545647874}
   _nextButton: {fileID: 1526802291}
   _dragEnabled: 0
