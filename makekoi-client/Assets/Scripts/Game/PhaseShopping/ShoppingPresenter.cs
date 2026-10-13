@@ -70,6 +70,10 @@ public class ShoppingPresenter : GamePhaseWindowBase
         // 品揃えはキャラ確定時に CharacterSelectPresenter で抽選済み
         // (Dev シーンでは DevPhaseSceneBootstrap が肩代わりしている)
 
+        // ページに入り直すと再度呼ばれる。前回の歓迎演出が生き残ると
+        // 同じボタンのクリック待ちが二重になり、ミニゲームが二重に始まってしまう。
+        _miniGameStartPerformanceCts?.Cancel();
+        _miniGameStartPerformanceCts?.Dispose();
         _miniGameStartPerformanceCts = CancellationTokenSource.CreateLinkedTokenSource(this.GetCancellationTokenOnDestroy());
         PerformWelcomeReactionAsync().Forget();
     }
@@ -167,7 +171,6 @@ public class ShoppingPresenter : GamePhaseWindowBase
         _miniGamePhaseCts?.Cancel();
         _miniGamePhaseCts?.Dispose();
         _miniGamePhaseCts = CancellationTokenSource.CreateLinkedTokenSource(this.GetCancellationTokenOnDestroy());
-
         await _miniGamePerformController.PerformMiniGame(_currentGameController.ThisMiniGameType);
 
         // OnGameLoaded で出したアイドル台詞を読ませてから開始する
